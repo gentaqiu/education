@@ -1,6 +1,7 @@
 import {Component, Inject, ViewChild, TemplateRef, OnInit} from '@angular/core';
 import {DOCUMENT} from '@angular/platform-browser';
 import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
+import { UsersService } from '../users/users.service';
 
 @Component({
   selector: 'app-index',
@@ -57,7 +58,7 @@ export class IFrameDialog {
   alert_message:string;
   constructor(
     public dialogRef: MdDialogRef<IFrameDialog>,
-    @Inject(MD_DIALOG_DATA) public data: any) { 
+    @Inject(MD_DIALOG_DATA) public data: any,private usersService: UsersService) { 
       this.alert_message = "";
     }
 
@@ -67,6 +68,10 @@ export class IFrameDialog {
       this.alert_message = "Passwords Do Not Match!";
     }
     else {
+      this.usersService.createUser(username,password).subscribe(users => {
+        console.log(users);
+      });
+
       this.dialogRef.close();
     }
     

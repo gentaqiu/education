@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { PostsService } from './posts.service';
+import { UsersService } from './users/users.service';
 import { AppComponent } from './app.component';
 import { PostsComponent } from './posts/posts.component';
 import { IndexComponent,IFrameDialog } from './index/index.component';
@@ -58,7 +59,7 @@ const ROUTES = [
     MdInputModule,
     RouterModule.forRoot(ROUTES) // Add routes to the app
   ],
-  providers: [PostsService],
+  providers: [PostsService,UsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
