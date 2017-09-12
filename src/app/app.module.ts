@@ -8,7 +8,9 @@ import { PostsService } from './posts.service';
 import { UsersService } from './users/users.service';
 import { AppComponent } from './app.component';
 import { PostsComponent } from './posts/posts.component';
-import { IndexComponent,IFrameDialog } from './index/index.component';
+import { IndexComponent } from './index/index.component';
+import { RegisterDialog } from './dialog/register.dialog';
+import { LoginDialog } from './dialog/login.dialog';
 import { MenuDemo } from './menu/menu-demo';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MdButtonModule, MdCheckboxModule,MdMenuModule,MdIconModule,MdToolbarModule,MdDialogModule,MdInputModule} from '@angular/material';
@@ -41,10 +43,11 @@ const ROUTES = [
     AppComponent,
     PostsComponent,
     IndexComponent,
-    IFrameDialog,
+    RegisterDialog,
+    LoginDialog,
     MenuDemo
   ],
-  entryComponents: [IFrameDialog],
+  entryComponents: [RegisterDialog,LoginDialog],
   imports: [
     BrowserModule,
     FormsModule,
