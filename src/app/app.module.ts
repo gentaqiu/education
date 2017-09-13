@@ -8,12 +8,11 @@ import { PostsService } from './posts.service';
 import { UsersService } from './users/users.service';
 import { AppComponent } from './app.component';
 import { PostsComponent } from './posts/posts.component';
-import { IndexComponent } from './index/index.component';
 import { RegisterDialog } from './dialog/register.dialog';
 import { LoginDialog } from './dialog/login.dialog';
 import { MenuDemo } from './menu/menu-demo';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MdButtonModule, MdCheckboxModule,MdMenuModule,MdIconModule,MdToolbarModule,MdDialogModule,MdInputModule} from '@angular/material';
+import {MdButtonModule, MdCheckboxModule,MdMenuModule,MdIconModule,MdToolbarModule,MdDialogModule,MdInputModule,MdCardModule,MdGridListModule,MdProgressBarModule} from '@angular/material';
 
 import 'hammerjs';
 
@@ -21,17 +20,16 @@ import 'hammerjs';
 const ROUTES = [
   {
     path: '',
-    redirectTo: 'index',
+    redirectTo: 'app',
     pathMatch: 'full'
   },
   {
+    path: 'app', loadChildren: 'app/layout/layout.module#LayoutModule'
+  }, 
+  {
     path: 'menu',
     component: MenuDemo
-  },   
-  {
-    path: 'index',
-    component: IndexComponent
-  },  
+  },    
   {
     path: 'posts',
     component: PostsComponent
@@ -42,7 +40,6 @@ const ROUTES = [
   declarations: [
     AppComponent,
     PostsComponent,
-    IndexComponent,
     RegisterDialog,
     LoginDialog,
     MenuDemo
@@ -60,6 +57,9 @@ const ROUTES = [
     MdToolbarModule,
     MdDialogModule,
     MdInputModule,
+    MdCardModule,
+    MdGridListModule,
+    MdProgressBarModule,
     RouterModule.forRoot(ROUTES) // Add routes to the app
   ],
   providers: [PostsService,UsersService],

@@ -1,19 +1,16 @@
 import {Component, Inject, ViewChild, TemplateRef, OnInit} from '@angular/core';
 import {DOCUMENT} from '@angular/platform-browser';
 import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
-import { UsersService } from '../users/users.service';
-import { RegisterDialog } from '../dialog/register.dialog';
-import { LoginDialog } from '../dialog/login.dialog';
-@Component({
-  selector: 'app-index',
-  templateUrl: './index.component.html',
-  styleUrls: ['./index.component.css'],
-      host: {
-        '(window:resize)': 'onResize($event)'
-      }    
-})
-export class IndexComponent implements OnInit {
+import { UsersService } from '../../users/users.service';
+import { RegisterDialog } from '../../dialog/register.dialog';
+import { LoginDialog } from '../../dialog/login.dialog';
 
+@Component({
+    selector: 'education-toolbar',
+    templateUrl: './toolbar.component.html',
+    styleUrls: ['./toolbar.component.css']
+})
+export class ToolbarComponent implements OnInit {
   constructor(public dialog: MdDialog) { }
 
     current:number = 1;
@@ -44,4 +41,3 @@ export class IndexComponent implements OnInit {
 
 
 }
-
