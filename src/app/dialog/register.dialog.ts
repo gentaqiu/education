@@ -25,11 +25,18 @@ export class RegisterDialog {
       this.alert_message = "Passwords Do Not Match!";
     }
     else {
-      this.usersService.createUser(username,password).subscribe(users => {
-        console.log(users);
-      });
+      this.usersService.createUser(username,password).subscribe(    
+        suc => {
+            console.log(suc);
+            this.dialogRef.close();
+        },
+        err => {
+            console.log(err );
+            this.alert_message = "Username already existed!";
+        }
+      );
 
-      this.dialogRef.close();
+      
     }
     
   }

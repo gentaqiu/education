@@ -5,7 +5,7 @@ function getUserModel () {
   mongoose.connect('mongodb://localhost/education');
 
   const UserModelSchema = new mongoose.Schema({
-    username: {type: String, unique: true},
+    username: {type: String, index: { unique: true }},
     password: String
   }, {
     collection: 'user'

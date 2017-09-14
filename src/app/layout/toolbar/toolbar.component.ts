@@ -34,6 +34,10 @@ export class ToolbarComponent implements OnInit {
     }
   openRegisterDialog(): void {
     let registerDialogRef = this.dialog.open(RegisterDialog);
+    registerDialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+    });    
   }  
   openLoginDialog(): void {
     let loginDialogRef = this.dialog.open(LoginDialog);

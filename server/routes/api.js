@@ -1,27 +1,5 @@
 var UserModel = require('../models/UserModel.js');
 
-/*
-function getUserModel () {
-  // Create your Schema
-  var mongoose = require('mongoose');
-  var Schema = mongoose.Schema;
-  mongoose.connect('mongodb://localhost/education');
-
-  const UserModelSchema = new mongoose.Schema({
-    name: String,
-    email: String
-  }, {
-    collection: 'user'
-  })
-  // Check to see if the model has been registered with mongoose
-  // if it exists return that model
-  if (mongoose.models && mongoose.models.UserModel) return mongoose.models.UserModel
-  // if no current model exists register and return new model
-  return mongoose.model('UserModel', UserModelSchema)
-}
-
-var UserModel = getUserModel();
-*/
 const express = require('express');
 const router = express.Router();
 
@@ -44,11 +22,15 @@ router.post('/users', (req, res) => {
 
   var user = new UserModel({ username: username,password:password });
   user.save(function (err, user) {
-    if (err) return console.error(err);
-    console.log('save success');
-    console.log(user);
+    if (err)  {
+      //console.error(err);
+      return res.status(403).json('{"success":"false"}');
+    }
+    else {
+      res.status(200).json('{"success":"true"}');
+    }
   });
-  res.status(200).json('{"response":"ok"}');
+  
 });
 
 // Get all posts
