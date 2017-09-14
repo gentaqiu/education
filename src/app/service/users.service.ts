@@ -7,8 +7,8 @@ export class UsersService {
 
   constructor(private http: Http) { }
 
-  createUser(username:string,password:string) {
-    return this.http.post('/api/users',{username:username,password:password})
+  createUser(fullname:string,email:string,password:string) {
+    return this.http.post('/api/users',{fullname:fullname,email:email,password:password})
       .map(res => res.json());  
   }
 

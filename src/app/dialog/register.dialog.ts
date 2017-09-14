@@ -1,7 +1,7 @@
 import {Component, Inject, ViewChild, TemplateRef, OnInit} from '@angular/core';
 import {DOCUMENT} from '@angular/platform-browser';
 import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
-import { UsersService } from '../users/users.service';
+import { UsersService } from '../service/users.service';
 @Component({
   selector: 'register-dialog',
   styles: [
@@ -19,20 +19,20 @@ export class RegisterDialog {
       this.alert_message = "";
     }
 
-  onConfirmClick(username:string,password:string,repeat_password:string): void {
+  onConfirmClick(fullname:string,email:string,password:string,repeat_password:string): void {
     if(password != repeat_password) {
       console.log("no correct");
       this.alert_message = "Passwords Do Not Match!";
     }
     else {
-      this.usersService.createUser(username,password).subscribe(    
+      this.usersService.createUser(fullname,email,password).subscribe(    
         suc => {
             console.log(suc);
             this.dialogRef.close();
         },
         err => {
             console.log(err );
-            this.alert_message = "Username already existed!";
+            this.alert_message = "Email already existed!";
         }
       );
 

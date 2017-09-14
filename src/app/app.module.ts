@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { PostsService } from './posts.service';
-import { UsersService } from './users/users.service';
+import { UsersService } from './service/users.service';
 import { AppComponent } from './app.component';
 import { PostsComponent } from './posts/posts.component';
 import { RegisterDialog } from './dialog/register.dialog';

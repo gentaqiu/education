@@ -1,7 +1,6 @@
 import {Component, Inject, ViewChild, TemplateRef, OnInit} from '@angular/core';
 import {DOCUMENT} from '@angular/platform-browser';
 import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
-import { UsersService } from '../../users/users.service';
 import { RegisterDialog } from '../../dialog/register.dialog';
 import { LoginDialog } from '../../dialog/login.dialog';
 
@@ -36,7 +35,6 @@ export class ToolbarComponent implements OnInit {
     let registerDialogRef = this.dialog.open(RegisterDialog);
     registerDialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      console.log(result);
     });    
   }  
   openLoginDialog(): void {

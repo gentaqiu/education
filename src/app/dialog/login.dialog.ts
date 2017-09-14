@@ -1,7 +1,7 @@
 import {Component, Inject, ViewChild, TemplateRef, OnInit} from '@angular/core';
 import {DOCUMENT} from '@angular/platform-browser';
 import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
-import { UsersService } from '../users/users.service';
+import { UsersService } from '../service/users.service';
 @Component({
   selector: 'login-dialog',
   styles: [
@@ -25,10 +25,11 @@ export class LoginDialog {
       this.alert_message = "Passwords Do Not Match!";
     }
     else {
+    /*
       this.usersService.createUser(username,password).subscribe(users => {
         console.log(users);
       });
-
+    */
       this.dialogRef.close();
     }
     

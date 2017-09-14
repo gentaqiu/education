@@ -13,21 +13,27 @@ router.get('/', (req, res) => {
 });
 
 router.post('/users', (req, res) => {
-  console.log("req===");
+  //console.log("req===");
 
-  console.log(req);
+  //console.log(req);
   body = req.body;
-  var username = body.username;
+  var fullname = body.fullname;
+  var email = body.email;
   var password = body.password;
+  
+  var usermodel = { name: fullname,email:email };
 
-  var user = new UserModel({ username: username,password:password });
+  var user = new UserModel(usermodel);
+  user.setPassword(password);
   user.save(function (err, user) {
     if (err)  {
       //console.error(err);
       return res.status(403).json('{"success":"false"}');
     }
     else {
-      res.status(200).json('{"success":"true"}');
+      //console.log(user);
+      $jwt = user.generateJwt();
+      return res.status(200).json('{"success":"true","JWT":"'+$jwt+'"}');
     }
   });
   

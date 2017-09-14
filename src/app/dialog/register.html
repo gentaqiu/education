@@ -1,7 +1,12 @@
     <form class="example-form">
       <md-form-field class="example-full-width">
-        <input #username mdInput placeholder="Username" value="">
+        <input #fullname mdInput placeholder="Full name" value="">
       </md-form-field>
+      <p>
+      <md-form-field class="example-full-width">
+        <input #email mdInput placeholder="Email address" value="">
+      </md-form-field>      
+      </p>
       <p>
       <md-form-field class="example-full-width">
         <input #password mdInput type="password" placeholder="Password" value="">
@@ -9,11 +14,11 @@
       </p>
       <p>
       <md-form-field class="example-full-width">
-        <input #repeat_password mdInput type="password" placeholder="Repeat Password" value="">
+        <input #repeat_password mdInput type="password" placeholder="Repeat password" value="">
       </md-form-field>   
       </p>  
       <p>
-        <button md-raised-button (click)="onConfirmClick(username.value,password.value,repeat_password.value)">Sign up</button>
+        <button md-raised-button (click)="onConfirmClick(fullname.value,email.value,password.value,repeat_password.value)">Sign up</button>
         <button md-raised-button (click)="onCancelClick()">Cancel</button>
       </p>        
       <p class="alert_message">
