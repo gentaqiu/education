@@ -17,8 +17,8 @@ router.get('/', (req, res) => {
 
 router.get('/profile', auth, profileCtrl.profileRead);
 
-router.post('/users', userCtrl.register);
-
+router.post('/users/register', userCtrl.register);
+router.post('/users/login', userCtrl.login);
 
 
 module.exports = router;

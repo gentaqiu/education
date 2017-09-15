@@ -17,4 +17,33 @@ export class AuthService {
     localStorage.removeItem("mean-token");
   }
 
+  isLoggedIn() {
+    var token = this.getToken();
+    var payload;
+
+    if(token){
+      payload = token.split('.')[1];
+      payload = atob(payload);
+      payload = JSON.parse(payload);
+
+      return payload.exp > Date.now() / 1000;
+    } else {
+      return false;
+    }
+  };
+
+  currentUser() {
+    if(this.isLoggedIn()){
+      var token = this.getToken();
+      var payload = token.split('.')[1];
+      payload = atob(payload);
+      payload = JSON.parse(payload);
+      console.log("payload====");
+      console.log(payload);
+      return {
+        email : "aaa",
+        name : "bbb"
+      };
+    }
+  };
 }

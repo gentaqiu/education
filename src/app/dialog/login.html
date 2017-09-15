@@ -1,6 +1,6 @@
     <form class="example-form">
       <md-form-field class="example-full-width">
-        <input #username mdInput placeholder="Username" value="">
+        <input #email mdInput placeholder="Email" value="">
       </md-form-field>
       <p>
       <md-form-field class="example-full-width">
@@ -8,7 +8,7 @@
       </md-form-field>
       </p>
       <p>
-        <button md-raised-button (click)="onConfirmClick(username.value,password.value,repeat_password.value)">Sign in</button>
+        <button md-raised-button (click)="onConfirmClick(email.value,password.value)">Sign in</button>
         <button md-raised-button (click)="onCancelClick()">Cancel</button>
       </p>        
       <p class="alert_message">

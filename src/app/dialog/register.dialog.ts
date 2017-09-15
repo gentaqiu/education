@@ -21,6 +21,7 @@ export class RegisterDialog {
     }
 
   onConfirmClick(fullname:string,email:string,password:string,repeat_password:string): void {
+    console.log('onConfirmClick in register');
     if(password != repeat_password) {
       this.alert_message = "Passwords Do Not Match!";
     }
