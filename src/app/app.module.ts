@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { PostsService } from './posts.service';
 import { UsersService } from './service/users.service';
+import { AuthService } from './service/auth.service';
 import { AppComponent } from './app.component';
 import { PostsComponent } from './posts/posts.component';
 import { RegisterDialog } from './dialog/register.dialog';
@@ -62,7 +63,7 @@ const ROUTES = [
     MdProgressBarModule,
     RouterModule.forRoot(ROUTES) // Add routes to the app
   ],
-  providers: [PostsService,UsersService],
+  providers: [PostsService,UsersService,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
