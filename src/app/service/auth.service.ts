@@ -19,17 +19,10 @@ export class AuthService {
 
   isLoggedIn() {
     var token = this.getToken();
-    var payload;
-
-    if(token){
-      payload = token.split('.')[1];
-      payload = atob(payload);
-      payload = JSON.parse(payload);
-
-      return payload.exp > Date.now() / 1000;
-    } else {
-      return false;
+    if(token) {
+      return true;
     }
+    return false;
   };
 
   currentUser() {

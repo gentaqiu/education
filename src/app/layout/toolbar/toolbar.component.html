@@ -1,19 +1,39 @@
-<md-toolbar color="primary">
+
+
+<md-toolbar>
 <span>Learn Chinese, so easy!</span>
+
+<button md-button [mdMenuTriggerFor]="menu1">Menu</button>
+<md-menu #menu1="mdMenu">
+  <button md-menu-item>Item 1</button>
+  <button md-menu-item>Item 2</button>
+</md-menu>
+
 <span class="example-spacer"></span>
 <span>
 	<button md-icon-button [mdMenuTriggerFor]="menu">
 	  <md-icon>more_vert</md-icon>
 	</button>
 	<md-menu #menu="mdMenu">
+	  <p *ngIf="!authService.isLoggedIn()">
 	  <button md-menu-item (click)="openRegisterDialog()">
 	    <md-icon>history</md-icon>
 	    <span>Sign up</span>
 	  </button>
+	  </p>
+	  <p *ngIf="!authService.isLoggedIn()">
 	  <button md-menu-item  (click)="openLoginDialog()">
 	    <md-icon>input</md-icon>
-	    <span>Sign in</span>
-	  </button>
+	    <span >Sign in</span>
+	  </button> 
+	  </p>
+	  <p *ngIf="authService.isLoggedIn()">
+	  <button md-menu-item  (click)="logout()">
+	    <md-icon>input</md-icon>
+	    <span >Sign out</span>
+	  </button> 
+	  </p>	  
 	</md-menu>
 </span>
+
 </md-toolbar>

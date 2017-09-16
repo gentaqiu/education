@@ -13,7 +13,7 @@ import { RegisterDialog } from './dialog/register.dialog';
 import { LoginDialog } from './dialog/login.dialog';
 import { MenuDemo } from './menu/menu-demo';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MdButtonModule, MdCheckboxModule,MdMenuModule,MdIconModule,MdToolbarModule,MdDialogModule,MdInputModule,MdCardModule,MdGridListModule,MdProgressBarModule} from '@angular/material';
+import {MdButtonModule, MdCheckboxModule,MdMenuModule,MdIconModule,MdToolbarModule,MdDialogModule,MdInputModule,MdCardModule,MdGridListModule,MdProgressBarModule,MdTabsModule} from '@angular/material';
 
 import 'hammerjs';
 
@@ -61,6 +61,7 @@ const ROUTES = [
     MdCardModule,
     MdGridListModule,
     MdProgressBarModule,
+    MdTabsModule,
     RouterModule.forRoot(ROUTES) // Add routes to the app
   ],
   providers: [PostsService,UsersService,AuthService],
