@@ -1,6 +1,7 @@
 import {Component, Inject, ViewChild, TemplateRef, OnInit} from '@angular/core';
 import {DOCUMENT} from '@angular/platform-browser';
 import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-index',
@@ -12,7 +13,7 @@ import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
 })
 export class IndexComponent implements OnInit {
 
-  constructor(public dialog: MdDialog) { }
+  constructor(public dialog: MdDialog,private router: Router) { }
 
     current:number = 1;
     col_num:number = 2;
@@ -27,14 +28,16 @@ export class IndexComponent implements OnInit {
         }    
     }
 
-  ngOnInit() {
-    this.setColNum();
-  }
+    ngOnInit() {
+      this.setColNum();
+    }
     onResize(event){
         this.setColNum();
     }
 
-
+    startCourse(courseName:string): void {
+      this.router.navigate(['/app/courses/'+courseName]);
+    }
 
 }
 

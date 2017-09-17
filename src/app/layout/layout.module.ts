@@ -7,7 +7,7 @@ import { ROUTES } from './layout.routes';
 
 import { LayoutComponent } from './layout.component';
 import { RouterModule } from '@angular/router';
-
+import { CKEditorModule } from 'ng2-ckeditor';
 
 @NgModule({
   imports: [
@@ -24,7 +24,8 @@ import { RouterModule } from '@angular/router';
     MdCardModule,
     MdGridListModule,
     MdProgressBarModule,
-    MdTabsModule    
+    MdTabsModule,
+    CKEditorModule    
   ],
   declarations: [
     LayoutComponent,

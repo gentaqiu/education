@@ -14,6 +14,7 @@ import { LoginDialog } from './dialog/login.dialog';
 import { MenuDemo } from './menu/menu-demo';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MdButtonModule, MdCheckboxModule,MdMenuModule,MdIconModule,MdToolbarModule,MdDialogModule,MdInputModule,MdCardModule,MdGridListModule,MdProgressBarModule,MdTabsModule} from '@angular/material';
+import { CKEditorModule } from 'ng2-ckeditor';
 
 import 'hammerjs';
 
@@ -62,6 +63,7 @@ const ROUTES = [
     MdGridListModule,
     MdProgressBarModule,
     MdTabsModule,
+    CKEditorModule,
     RouterModule.forRoot(ROUTES) // Add routes to the app
   ],
   providers: [PostsService,UsersService,AuthService],
