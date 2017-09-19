@@ -1,0 +1,28 @@
+.img-inline {
+	height:30px;
+	width:30px;
+	display: inline;
+}
+.test-title {
+	font-size: 200%;
+}
+.div-test-title {
+	margin-left: 20px;
+	margin-top: 20px;
+	margin-bottom:100px;
+}
+.test-answer{
+  margin-left: 20px;
+  margin-top: 20px;	
+  margin-bottom:50px;
+  margin-right:20px;
+  text-justify: distribute-all-lines;
+  text-align-last: justify;	
+}
+.test-check {
+  margin-left: 20px;
+  margin-top: 20px;	
+  margin-bottom:20px;
+  margin-right:20px;
+  text-align:center
+}
