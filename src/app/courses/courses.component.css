@@ -9,15 +9,7 @@
 .div-test-title {
 	margin-left: 20px;
 	margin-top: 20px;
-	margin-bottom:100px;
-}
-.test-answer{
-  margin-left: 20px;
-  margin-top: 20px;	
-  margin-bottom:50px;
-  margin-right:20px;
-  text-justify: distribute-all-lines;
-  text-align-last: justify;	
+	margin-bottom:50px;
 }
 .test-check {
   margin-left: 20px;

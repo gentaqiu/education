@@ -16,14 +16,23 @@
       <img class="img-inline" src="assets/voice.jpg" alt="Voice">
       <font class="test-title">你好</font>
     </div>
-    <div class="test-answer">
-      <button md-raised-button>Sorry</button>
-      <button md-raised-button>Goodbye</button>
-      <button md-raised-button>Thank you</button>
-      <button md-raised-button>Hello</button>
-    </div>
+    <md-grid-list cols="{{col_num}}" rowHeight="8:4">
+      <md-grid-tile>
+        <button md-raised-button color="{{color_A}}" (click)="selectAnswer('A')">Sorry</button>
+      </md-grid-tile>
+      <md-grid-tile>
+        <button md-raised-button color="{{color_B}}" (click)="selectAnswer('B')">Goodbye</button>
+      </md-grid-tile>
+      <md-grid-tile>
+        <button md-raised-button color="{{color_C}}" (click)="selectAnswer('C')">Thank you</button>
+      </md-grid-tile>
+      <md-grid-tile>
+        <button md-raised-button color="{{color_D}}" (click)="selectAnswer('D')">Hello</button>    
+      </md-grid-tile>  
+    </md-grid-list>
+
     <div class="test-check">
-      <button md-raised-button disabled>Check</button>
+      <button md-raised-button disabled="{{check_disable}}" color="{{color_check}}">Check</button>
     </div>
   </md-card-actions>
 </md-card>
