@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {MdSnackBar} from '@angular/material';
+import {CorrectAnswerComponent} from '../components/correct-answer';
+import {WrongAnswerComponent} from '../components/wrong-answer';
+
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
@@ -17,9 +21,12 @@ export class CoursesComponent implements OnInit {
   color_B = "";
   color_C = "";
   color_D = "";
+  selection = "";
   check_disable = true;
   color_check = "";
-  constructor() { }
+  soundID = "Thunder";
+
+  constructor(public snackBar: MdSnackBar) { }
 
     setColNum() {
         this.col_num = 4;
@@ -37,6 +44,7 @@ export class CoursesComponent implements OnInit {
   }
 
   selectAnswer(selection:string) {
+    this.selection = selection;
     if(selection == 'A') {
       this.color_A = "primary";
       this.color_B = "";
@@ -63,5 +71,25 @@ export class CoursesComponent implements OnInit {
     }  
     this.check_disable = false;     
     this.color_check = "accent"; 
+  }
+
+  checkAnswer() {
+    if(this.selection == 'A') {
+      this.snackBar.openFromComponent(CorrectAnswerComponent, {
+        duration: 50000,
+      });     
+    }
+    else {
+      this.snackBar.openFromComponent(WrongAnswerComponent, {
+        duration: 1500,
+      });      
+    }
+  }
+  playVoice(text:string) {
+    console.log("play me");
+    var audio = new Audio();
+audio.src = "/assets/thunder.mp3";
+audio.load();
+audio.play();
   }
 }

@@ -13,7 +13,7 @@
   </md-card-content>
   <md-card-actions>
     <div class="div-test-title">
-      <img class="img-inline" src="assets/voice.jpg" alt="Voice">
+      <button md-icon-button (click)="playVoice('你好')"> <img class="img-inline" src="assets/voice.jpg" alt="Voice"></button>
       <font class="test-title">你好</font>
     </div>
     <md-grid-list cols="{{col_num}}" rowHeight="8:4">
@@ -32,7 +32,7 @@
     </md-grid-list>
 
     <div class="test-check">
-      <button md-raised-button disabled="{{check_disable}}" color="{{color_check}}">Check</button>
+      <button md-raised-button disabled="{{check_disable}}" color="{{color_check}}" (click)="checkAnswer()">Check</button>
     </div>
   </md-card-actions>
 </md-card>

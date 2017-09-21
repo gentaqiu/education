@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import {MdButtonModule, MdCheckboxModule,MdMenuModule,MdIconModule,MdToolbarModule,MdDialogModule,MdInputModule,MdCardModule,MdGridListModule,MdProgressBarModule} from '@angular/material';
+import {MdButtonModule, MdCheckboxModule,MdMenuModule,MdIconModule,MdToolbarModule,MdDialogModule,MdInputModule,MdCardModule,MdGridListModule,MdProgressBarModule,MdSnackBarModule} from '@angular/material';
 
 export const routes = [
     { path: '', component: IndexComponent, pathMatch: 'full' },
@@ -23,7 +23,8 @@ export const routes = [
     MdInputModule,
     MdCardModule,
     MdGridListModule,
-    MdProgressBarModule,    
+    MdProgressBarModule,   
+    MdSnackBarModule, 
   ],
   declarations: [
    IndexComponent

@@ -13,7 +13,7 @@ import { RegisterDialog } from './dialog/register.dialog';
 import { LoginDialog } from './dialog/login.dialog';
 import { MenuDemo } from './menu/menu-demo';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MdButtonModule, MdCheckboxModule,MdMenuModule,MdIconModule,MdToolbarModule,MdDialogModule,MdInputModule,MdCardModule,MdGridListModule,MdProgressBarModule,MdTabsModule} from '@angular/material';
+import {MdButtonModule, MdCheckboxModule,MdMenuModule,MdIconModule,MdToolbarModule,MdDialogModule,MdInputModule,MdCardModule,MdGridListModule,MdProgressBarModule,MdTabsModule,MdSnackBarModule} from '@angular/material';
 import { CKEditorModule } from 'ng2-ckeditor';
 
 import 'hammerjs';
@@ -63,6 +63,7 @@ const ROUTES = [
     MdGridListModule,
     MdProgressBarModule,
     MdTabsModule,
+    MdSnackBarModule,
     CKEditorModule,
     RouterModule.forRoot(ROUTES) // Add routes to the app
   ],
