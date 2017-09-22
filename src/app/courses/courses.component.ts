@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MdSnackBar} from '@angular/material';
 import {CorrectAnswerComponent} from '../components/correct-answer';
 import {WrongAnswerComponent} from '../components/wrong-answer';
+import { VoiceService } from '../service/voice.service';
 
 @Component({
   selector: 'app-courses',
@@ -26,7 +27,7 @@ export class CoursesComponent implements OnInit {
   color_check = "";
   soundID = "Thunder";
 
-  constructor(public snackBar: MdSnackBar) { }
+  constructor(public snackBar: MdSnackBar,private voiceService: VoiceService) { }
 
     setColNum() {
         this.col_num = 4;
@@ -87,9 +88,21 @@ export class CoursesComponent implements OnInit {
   }
   playVoice(text:string) {
     console.log("play me");
-    var audio = new Audio();
-audio.src = "/assets/thunder.mp3";
-audio.load();
-audio.play();
+    
+
+    this.voiceService.getVoiceFilePath(text).subscribe(    
+        suc => {
+          console.log(suc);
+          var path = suc.path;
+          console.log("path="+path);
+          var audio = new Audio();
+          audio.src = path;
+          audio.load();
+          audio.play();
+        },
+        err => {
+            console.log(err);
+        }
+    );
   }
 }

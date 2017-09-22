@@ -1,5 +1,6 @@
 var profileCtrl = require('../controllers/profileCtrl.js');
 var userCtrl = require('../controllers/userCtrl.js');
+var voiceCtrl = require('../controllers/voiceCtrl.js');
 
 var jwt = require('express-jwt');
 var auth = jwt({
@@ -19,6 +20,5 @@ router.get('/profile', auth, profileCtrl.profileRead);
 
 router.post('/users/register', userCtrl.register);
 router.post('/users/login', userCtrl.login);
-
-
+router.post('/voice/path', voiceCtrl.path);
 module.exports = router;
