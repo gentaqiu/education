@@ -23,7 +23,9 @@ module.exports.path = function(req, res) {
     }
     else {
         console.log("no file existed");
-        var url = "https://translate.google.com/translate_tts?ie=UTF-8&q=%E4%BD%A0%E5%A5%BD&tl=zh-CN&total=1&idx=0&textlen=2&tk=14682.416633&client=t&hint=en";
+        //var url = "https://translate.google.com/translate_tts?ie=UTF-8&q=%E4%BD%A0%E5%A5%BD&tl=zh-CN&total=1&idx=0&textlen=2&tk=14682.416633&client=t&hint=en";
+        var url = "https://translate.google.com/translate_tts?ie=UTF-8&q="+encodeURIComponent(text)+"&tl=zh-CN&total=1&idx=0&textlen=2&tk=14682.416633&client=t&hint=en";
+        console.log(url);
         https.get(url, (res) => {
           var data = new Stream(); 
           //console.log('statusCode:', res.statusCode);
