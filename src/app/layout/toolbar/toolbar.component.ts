@@ -16,6 +16,7 @@ export class ToolbarComponent implements OnInit {
 
     current:number = 1;
     col_num:number = 2;
+    audio = new Audio();
     isLogin = false;
     setColNum() {
         this.col_num = 3;
@@ -48,5 +49,28 @@ export class ToolbarComponent implements OnInit {
 
   logout(): void {
     this.authService.logout();
+  }
+  play(): void {
+      var paths = [
+        "/assets/audio/tang/chunxiao.mp3",
+        "/assets/audio/tang/luchai.mp3"
+      ];
+      var index = 1;
+      var audio = this.audio;
+      audio.src = paths[0];
+      audio.load();
+      audio.play(); 
+      audio.onended = function() {
+          if(index < paths.length){
+              audio.src=paths[index];
+              audio.load();
+              audio.play();
+              index++;
+          }
+      };      
+    
+  }
+  pause(): void {
+      this.audio.pause();
   }
 }
