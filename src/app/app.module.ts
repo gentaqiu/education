@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { PostsService } from './posts.service';
 import { UsersService } from './service/users.service';
 import { AuthService } from './service/auth.service';
+import { CourseService } from './service/course.service';
 import { VoiceService } from './service/voice.service';
 import { AppComponent } from './app.component';
 import { PostsComponent } from './posts/posts.component';
@@ -68,7 +69,7 @@ const ROUTES = [
     CKEditorModule,
     RouterModule.forRoot(ROUTES) // Add routes to the app
   ],
-  providers: [PostsService,UsersService,AuthService,VoiceService],
+  providers: [PostsService,UsersService,AuthService,VoiceService,CourseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

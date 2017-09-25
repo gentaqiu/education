@@ -1,31 +1,11 @@
 <md-grid-list cols="{{col_num}}" rowHeight="8:9">
 
-  <md-grid-tile>
-    <md-card class="example-card">
+  <md-grid-tile *ngFor="let course of courses; let i = index">
+    <md-card class="example-card" >
 
-      <img md-card-image src="assets/pronunciation.jpg" alt="Photo of a Shiba Inu">
+      <img md-card-image src="{{course.image}}" alt="{{course.name}}">
       <div>
-        <button md-raised-button (click)="startCourse('basic')">Basic</button>
-    </div>  
-    </md-card>
-  </md-grid-tile>
-
-  <md-grid-tile>
-    <md-card class="example-card">
-
-      <img md-card-image src="assets/pronunciation.jpg" alt="Photo of a Shiba Inu">
-      <div>
-        <button md-raised-button (click)="startCourse('family')">Family</button>
-    </div>  
-    </md-card>
-  </md-grid-tile>
-
-  <md-grid-tile>
-    <md-card class="example-card">
-
-      <img md-card-image src="assets/pronunciation.jpg" alt="Photo of a Shiba Inu">
-      <div>
-        <button md-raised-button (click)="startCourse('animal')">Animal</button>
+        <button md-raised-button (click)="startCourse(course.name)">{{course.name}}</button>
     </div>  
     </md-card>
   </md-grid-tile>

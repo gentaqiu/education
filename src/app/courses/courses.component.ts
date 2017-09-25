@@ -3,6 +3,7 @@ import {MdSnackBar} from '@angular/material';
 import {CorrectAnswerComponent} from '../components/correct-answer';
 import {WrongAnswerComponent} from '../components/wrong-answer';
 import { VoiceService } from '../service/voice.service';
+import { CourseService } from '../service/course.service';
 
 @Component({
   selector: 'app-courses',
@@ -26,8 +27,9 @@ export class CoursesComponent implements OnInit {
   check_disable = true;
   color_check = "";
   soundID = "Thunder";
+  
 
-  constructor(public snackBar: MdSnackBar,private voiceService: VoiceService) { }
+  constructor(public snackBar: MdSnackBar,private voiceService: VoiceService,private courseService:CourseService) { }
 
     setColNum() {
         this.col_num = 4;
@@ -41,7 +43,7 @@ export class CoursesComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.setColNum();
+    this.setColNum();  
   }
 
   selectAnswer(selection:string) {

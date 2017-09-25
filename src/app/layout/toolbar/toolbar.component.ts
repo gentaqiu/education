@@ -52,7 +52,9 @@ export class ToolbarComponent implements OnInit {
   }
   play(): void {
       var paths = [
+        "/assets/audio/tang/wanglushanpubu.mp3",
         "/assets/audio/tang/chunxiao.mp3",
+        "/assets/audio/tang/youziyin.mp3",
         "/assets/audio/tang/luchai.mp3"
       ];
       var index = 1;

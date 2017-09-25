@@ -1,6 +1,7 @@
 var profileCtrl = require('../controllers/profileCtrl.js');
 var userCtrl = require('../controllers/userCtrl.js');
 var voiceCtrl = require('../controllers/voiceCtrl.js');
+var courseCtrl = require('../controllers/courseCtrl.js');
 
 var jwt = require('express-jwt');
 var auth = jwt({
@@ -17,6 +18,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/profile', auth, profileCtrl.profileRead);
+router.get('/courses', courseCtrl.getCourses);
 
 router.post('/users/register', userCtrl.register);
 router.post('/users/login', userCtrl.login);

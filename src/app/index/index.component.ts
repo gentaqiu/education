@@ -2,6 +2,7 @@ import {Component, Inject, ViewChild, TemplateRef, OnInit} from '@angular/core';
 import {DOCUMENT} from '@angular/platform-browser';
 import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { CourseService } from '../service/course.service';
 
 @Component({
   selector: 'app-index',
@@ -13,10 +14,12 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class IndexComponent implements OnInit {
 
-  constructor(public dialog: MdDialog,private router: Router) { }
+  constructor(public dialog: MdDialog,private router: Router,private courseService:CourseService) { }
 
     current:number = 1;
     col_num:number = 2;
+    courses = [];
+
     setColNum() {
         this.col_num = 3;
         var width = window.innerWidth;
@@ -30,6 +33,17 @@ export class IndexComponent implements OnInit {
 
     ngOnInit() {
       this.setColNum();
+      this.courseService.getCourses().subscribe(    
+          suc => {
+              //console.log(suc);
+              this.courses = suc.courses;
+              console.log("this.courses==");
+              console.log(this.courses);
+          },
+          err => {
+              console.log(err);
+          }
+      );        
     }
     onResize(event){
         this.setColNum();
