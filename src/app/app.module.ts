@@ -31,6 +31,9 @@ const ROUTES = [
     path: 'app', loadChildren: 'app/layout/layout.module#LayoutModule'
   }, 
   {
+    path: 'admin', loadChildren: 'admin/layout/layout.module#LayoutModule'
+  },   
+  {
     path: 'menu',
     component: MenuDemo
   },    
