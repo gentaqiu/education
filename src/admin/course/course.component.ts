@@ -4,14 +4,14 @@ import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
-  selector: 'admin-index',
-  templateUrl: './index.component.html',
-  styleUrls: ['./index.component.css'],
+  selector: 'admin-course',
+  templateUrl: './course.component.html',
+  styleUrls: ['./course.component.css'],
       host: {
         '(window:resize)': 'onResize($event)'
       }    
 })
-export class IndexComponent implements OnInit {
+export class CourseComponent implements OnInit {
 
   constructor(public dialog: MdDialog,private router: Router) { }
 
