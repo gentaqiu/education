@@ -4,14 +4,16 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import {MdButtonModule, MdCheckboxModule,MdMenuModule,MdIconModule,MdToolbarModule,MdDialogModule,MdInputModule,MdCardModule,MdGridListModule,MdProgressBarModule,MdSnackBarModule} from '@angular/material';
+import { NgUploaderModule } from 'ngx-uploader';
 
 export const routes = [
     { path: '', component: CourseComponent, pathMatch: 'full' },
 ];
 
+
 @NgModule({
   imports: [
-    CommonModule,
+    CommonModule, 
     FormsModule,
     RouterModule.forChild(routes),
     MdButtonModule, 
@@ -24,7 +26,8 @@ export const routes = [
     MdCardModule,
     MdGridListModule,
     MdProgressBarModule,   
-    MdSnackBarModule, 
+    MdSnackBarModule,
+    NgUploaderModule
   ],
   declarations: [
    CourseComponent

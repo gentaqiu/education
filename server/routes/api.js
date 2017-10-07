@@ -23,4 +23,7 @@ router.get('/courses', courseCtrl.getCourses);
 router.post('/users/register', userCtrl.register);
 router.post('/users/login', userCtrl.login);
 router.post('/voice/path', voiceCtrl.path);
+router.post('/course/create', courseCtrl.create);
+
+
 module.exports = router;
