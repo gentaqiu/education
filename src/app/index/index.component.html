@@ -1,13 +1,13 @@
-<md-grid-list cols="{{col_num}}" rowHeight="8:9">
+<mat-grid-list cols="{{col_num}}" rowHeight="8:9">
 
-  <md-grid-tile *ngFor="let course of courses; let i = index">
-    <md-card class="example-card" >
+  <mat-grid-tile *ngFor="let course of courses; let i = index">
+    <mat-card class="example-card" >
 
-      <img md-card-image src="{{course.image}}" alt="{{course.name}}">
+      <img mat-card-image src="{{course.image}}" alt="{{course.name}}">
       <div>
-        <button md-raised-button (click)="startCourse(course.name)">{{course.name}}</button>
+        <button mat-raised-button (click)="startCourse(course.name)">{{course.name}}</button>
     </div>  
-    </md-card>
-  </md-grid-tile>
+    </mat-card>
+  </mat-grid-tile>
 
-</md-grid-list>
+</mat-grid-list>

@@ -1,12 +1,35 @@
+<!--
 <div class="drop-container" ngFileDrop [options]="options" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" [ngClass]="{ 'is-drop-over': dragOver }">
   <h1>Drag & Drop</h1>
 </div>
- 
-<label class="upload-button">
-  <input type="file" ngFileSelect [options]="options" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" multiple>
-  or choose file(s)
-</label>
- 
-<button type="button" class="start-upload-btn" (click)="startUpload()">
-  Start Upload
-</button>
+--> 
+
+<div class="course-form-container">
+  <div>
+    <mat-form-field class="example-full-width">
+      <label class="upload-button">
+        <input matInput placeholder="Course Name" [(ngModel)]="courseName">
+      </label>
+    </mat-form-field>
+  </div>
+  <div class="form-row">
+  <input type="file" ngFileSelect [options]="options" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" multiple>	
+  </div>
+  <div class="form-row">
+  	<button mat-raised-button color="primary" (click)="startUpload()">Create</button>
+  </div>  
+</div>
+
+<mat-grid-list cols="3" rowHeight="8:9">
+
+  <mat-grid-tile *ngFor="let course of courses; let i = index">
+    <mat-card class="example-card" >
+
+      <img mat-card-image src="{{course.image}}" alt="{{course.name}}">
+      <div>
+        <button mat-raised-button>{{course.name}}</button>
+    </div>  
+    </mat-card>
+  </mat-grid-tile>
+
+</mat-grid-list>

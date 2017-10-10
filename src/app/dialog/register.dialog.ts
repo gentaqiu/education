@@ -1,8 +1,8 @@
 import {Component, Inject, ViewChild, TemplateRef, OnInit} from '@angular/core';
 import {DOCUMENT} from '@angular/platform-browser';
-import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
-import { UsersService } from '../service/users.service';
-import { AuthService } from '../service/auth.service';
+import { UsersService } from '../../service/users.service';
+import { AuthService } from '../../service/auth.service';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 @Component({
   selector: 'register-dialog',
   styles: [
@@ -15,8 +15,8 @@ import { AuthService } from '../service/auth.service';
 export class RegisterDialog {
   alert_message:string;
   constructor(
-    public dialogRef: MdDialogRef<RegisterDialog>,
-    @Inject(MD_DIALOG_DATA) public data: any,private usersService: UsersService,private authService: AuthService) { 
+    public dialogRef: MatDialogRef<RegisterDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: any,private usersService: UsersService,private authService: AuthService) { 
       this.alert_message = "";
     }
 

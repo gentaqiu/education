@@ -1,6 +1,5 @@
 import {Component, Inject, ViewChild, TemplateRef, OnInit} from '@angular/core';
 import {DOCUMENT} from '@angular/platform-browser';
-import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
@@ -13,7 +12,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class IndexComponent implements OnInit {
 
-  constructor(public dialog: MdDialog,private router: Router) { }
+  constructor(private router: Router) { }
 
     current:number = 1;
     col_num:number = 2;

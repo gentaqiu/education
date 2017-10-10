@@ -1,10 +1,10 @@
 import {Component, Inject, ViewChild, TemplateRef, OnInit} from '@angular/core';
 import {DOCUMENT} from '@angular/platform-browser';
 import { NgIf } from '@angular/common';
-import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
 import { RegisterDialog } from '../../dialog/register.dialog';
 import { LoginDialog } from '../../dialog/login.dialog';
-import { AuthService } from '../../service/auth.service';
+import { AuthService } from '../../../service/auth.service';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA,MatFormFieldModule,MatIconModule} from '@angular/material';
 
 @Component({
     selector: 'education-toolbar',
@@ -12,7 +12,7 @@ import { AuthService } from '../../service/auth.service';
     styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit {
-  constructor(public dialog: MdDialog,private authService: AuthService) { }
+  constructor(public dialog: MatDialog,private authService: AuthService) { }
 
     current:number = 1;
     col_num:number = 2;

@@ -1,29 +1,22 @@
-.example-icon {
-  padding: 0 14px;
+.course-form-container {
+  padding-top: 25px;
+  padding-left:300px;
 }
 
-.example-spacer {
-  flex: 1 1 auto;
+.form-row {
+	float:left;
 }
-
-.example-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
-}
-
 .example-full-width {
-  width: 100%;
+	float:left; 
 }
 
-.alert_message {
-	color: #ffebee;
+.upload-button {
+    display: block;
+    float: left;
+    text-decoration: underline;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin-left: 4px;
+    color: #3e3e3e;
 }
-
-md-card-actions {
-	
-}
-
-    .my-drop-zone { border: dotted 3px lightgray; }
-    .nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
-    .another-file-over-class { border: dotted 3px green; }

@@ -1,9 +1,11 @@
-import { Component, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { UploadOutput, UploadInput, UploadFile, humanizeBytes, UploaderOptions } from 'ngx-uploader';
- 
+import { CourseService } from '../../service/course.service';
+
 @Component({
   selector: 'admin-course',
-  templateUrl: 'course.component.html'
+  templateUrl: 'course.component.html',
+  styleUrls: ['./course.component.css']
 })
 export class CourseComponent {
   options: UploaderOptions;
@@ -12,13 +14,26 @@ export class CourseComponent {
   uploadInput: EventEmitter<UploadInput>;
   humanizeBytes: Function;
   dragOver: boolean;
- 
-  constructor() {
+  courseName: string;
+  courses = [];
+
+  constructor(private courseService:CourseService) {
     this.files = []; // local uploading files array
     this.uploadInput = new EventEmitter<UploadInput>(); // input events, we use this to emit data to ngx-uploader
     this.humanizeBytes = humanizeBytes;
   }
- 
+  ngOnInit() {
+      this.courseService.getCourses().subscribe(    
+          suc => {
+              //console.log(suc);
+              this.courses = suc.courses;
+          },
+          err => {
+              console.log(err);
+          }
+      );        
+  }
+
   onUploadOutput(output: UploadOutput): void {
     if (output.type === 'allAddedToQueue') { // when all files added in queue
       // uncomment this if you want to auto upload files when added
@@ -52,7 +67,7 @@ export class CourseComponent {
       type: 'uploadAll',
       url: '/api/course/create',
       method: 'POST',
-      data: { foo: 'bar' }
+      data: { courseName: this.courseName }
     };
  
     this.uploadInput.emit(event);

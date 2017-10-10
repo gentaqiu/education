@@ -1,8 +1,8 @@
 import {Component, Inject, ViewChild, TemplateRef, OnInit} from '@angular/core';
 import {DOCUMENT} from '@angular/platform-browser';
-import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
+import {MatDialog} from '@angular/material';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { CourseService } from '../service/course.service';
+import { CourseService } from '../../service/course.service';
 
 @Component({
   selector: 'app-index',
@@ -14,7 +14,7 @@ import { CourseService } from '../service/course.service';
 })
 export class IndexComponent implements OnInit {
 
-  constructor(public dialog: MdDialog,private router: Router,private courseService:CourseService) { }
+  constructor(public dialog: MatDialog,private router: Router,private courseService:CourseService) { }
 
     current:number = 1;
     col_num:number = 2;
@@ -37,8 +37,6 @@ export class IndexComponent implements OnInit {
           suc => {
               //console.log(suc);
               this.courses = suc.courses;
-              console.log("this.courses==");
-              console.log(this.courses);
           },
           err => {
               console.log(err);

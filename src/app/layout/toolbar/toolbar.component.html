@@ -1,39 +1,39 @@
 
 
-<md-toolbar>
+<mat-toolbar>
 <span>Learn Chinese, so easy!</span>
 
 <span class="example-spacer"></span>
 <span>
-	<button md-icon-button (click)="play()">
-	  <md-icon>play_circle_fill</md-icon>
+	<button mat-icon-button (click)="play()">
+	  <mat-icon>play_circle_fill</mat-icon>
 	</button>	
-	<button md-icon-button (click)="pause()">
-	  <md-icon>pause</md-icon>
+	<button mat-icon-button (click)="pause()">
+	  <mat-icon>pause</mat-icon>
 	</button>		
-	<button md-icon-button [mdMenuTriggerFor]="menu">
-	  <md-icon>more_vert</md-icon>
+	<button mat-icon-button [matMenuTriggerFor]="menu">
+	  <mat-icon>more_vert</mat-icon>
 	</button>
-	<md-menu #menu="mdMenu">
+	<mat-menu #menu="matMenu">
 	  <p *ngIf="!authService.isLoggedIn()">
-	  <button md-menu-item (click)="openRegisterDialog()">
-	    <md-icon>history</md-icon>
+	  <button mat-menu-item (click)="openRegisterDialog()">
+	    <mat-icon>history</mat-icon>
 	    <span>Sign up</span>
 	  </button>
 	  </p>
 	  <p *ngIf="!authService.isLoggedIn()">
-	  <button md-menu-item  (click)="openLoginDialog()">
-	    <md-icon>input</md-icon>
+	  <button mat-menu-item  (click)="openLoginDialog()">
+	    <mat-icon>input</mat-icon>
 	    <span >Sign in</span>
 	  </button> 
 	  </p>
 	  <p *ngIf="authService.isLoggedIn()">
-	  <button md-menu-item  (click)="logout()">
-	    <md-icon>input</md-icon>
+	  <button mat-menu-item  (click)="logout()">
+	    <mat-icon>input</mat-icon>
 	    <span >Sign out</span>
 	  </button> 
 	  </p>	  
-	</md-menu>
+	</mat-menu>
 </span>
 
-</md-toolbar>
+</mat-toolbar>
