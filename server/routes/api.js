@@ -24,6 +24,6 @@ router.post('/users/register', userCtrl.register);
 router.post('/users/login', userCtrl.login);
 router.post('/voice/path', voiceCtrl.path);
 router.post('/course/create', courseCtrl.create);
-
+router.post('/course/delete', courseCtrl.delete);
 
 module.exports = router;

@@ -50,6 +50,9 @@ export class CourseComponent {
       // update current data in files array for uploading file
       const index = this.files.findIndex(file => typeof output.file !== 'undefined' && file.id === output.file.id);
       this.files[index] = output.file;
+      var filename = output.file.name;
+      var item = {name:this.courseName,image:'assets/uploads/' + filename};
+      this.courses.push(item);
     } else if (output.type === 'removed') {
       // remove file from array when removed
       this.files = this.files.filter((file: UploadFile) => file !== output.file);
@@ -73,6 +76,23 @@ export class CourseComponent {
     this.uploadInput.emit(event);
   }
  
+  deleteCourse(courseName:string) {
+    console.log(courseName);
+      this.courseService.deleteCourse(courseName).subscribe(    
+          suc => {
+              console.log(suc);
+
+              for(var i = this.courses.length - 1; i >= 0; i--) {
+                  if(this.courses[i].name == courseName) {
+                     this.courses.splice(i, 1);
+                  }
+              }              
+          },
+          err => {
+              console.log(err);
+          }
+      );     
+  }
   cancelUpload(id: string): void {
     this.uploadInput.emit({ type: 'cancel', id: id });
   }

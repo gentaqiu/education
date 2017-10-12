@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import {MatFormFieldModule,MatGridListModule} from '@angular/material';
+import {MatFormFieldModule,MatGridListModule,MatCardModule,MatButtonModule} from '@angular/material';
 
 export const routes = [
     { path: '', component: IndexComponent, pathMatch: 'full' },
@@ -15,6 +15,8 @@ export const routes = [
     FormsModule,
     MatFormFieldModule,
     MatGridListModule,
+    MatCardModule,
+    MatButtonModule,
     RouterModule.forChild(routes), 
   ],
   declarations: [

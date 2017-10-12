@@ -20,6 +20,7 @@
   </div>  
 </div>
 
+<div>
 <mat-grid-list cols="3" rowHeight="8:9">
 
   <mat-grid-tile *ngFor="let course of courses; let i = index">
@@ -28,8 +29,11 @@
       <img mat-card-image src="{{course.image}}" alt="{{course.name}}">
       <div>
         <button mat-raised-button>{{course.name}}</button>
+
+        <button mat-raised-button (click)="deleteCourse(course.name)">Delete</button>
     </div>  
     </mat-card>
   </mat-grid-tile>
 
 </mat-grid-list>
+</div>

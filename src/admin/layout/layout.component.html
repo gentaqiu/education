@@ -1,22 +1,12 @@
-<div id="wrapper">
-	<h1>
-		Admin Dashboard
-	</h1>
+<button mat-button [matMenuTriggerFor]="course_management">Course Management</button>
 
-	<div id="sidebar">
-		
-		<ul>
-			<li class="selected" (click)="navigateTo('index')">Dashboard</li>
-			<li (click)="navigateTo('course')">Course</li>
-			<li><a href="#">Contact</a></li>
-		</ul>
-	</div>
+<mat-menu #course_management="matMenu">
+  <button mat-menu-item (click)="navigateTo('course')">Course List</button>
+</mat-menu>
 
-	<div class="container">
-		<router-outlet></router-outlet>
-	</div>
-	<div style="clear:both;"></div>
-</div>
+<router-outlet></router-outlet>
+
+
 <!--
 <div class="content-wrap" id="content-wrap">
   <main id="content" class="content" role="main">

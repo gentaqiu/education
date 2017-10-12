@@ -18,4 +18,10 @@ export class CourseService {
     return this.http.get('/api/courses')
       .map(res => res.json());
   }
+
+  deleteCourse(courseName:string) {
+    console.log("courseName="+courseName);
+    return this.http.post('/api/course/delete',{courseName:courseName})
+      .map(res => res.json());    
+  }
 }

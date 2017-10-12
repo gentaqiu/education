@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgUploaderModule } from 'ngx-uploader';
-import {MatFormFieldModule,MatInputModule,MatButtonModule,MatGridListModule} from '@angular/material';
+import {MatFormFieldModule,MatInputModule,MatButtonModule,MatGridListModule,MatCardModule} from '@angular/material';
 
 export const routes = [
     { path: '', component: CourseComponent, pathMatch: 'full' },
@@ -20,6 +20,7 @@ export const routes = [
     MatInputModule,
     MatButtonModule,
     MatGridListModule,
+    MatCardModule,
     NgUploaderModule
   ],
   declarations: [

@@ -5,16 +5,19 @@ var formidable = require('formidable');
 
 module.exports = {
   getCourses : function(req, res) {
-    var response = {
-      "success":true,
-      "courses":
-        [
-          {name:"Basic",image:"assets/pronunciation.jpg"},
-          {name:"Family",image:"assets/pronunciation.jpg"},
-          {name:"Animal",image:"assets/pronunciation.jpg"},
-        ]
-    };
-    return res.status(200).json(response);
+    var courseSet = [];
+    CourseModel.find({}, function (err, courses) {
+        courseSet = courses;
+        var response = {
+          "success":true,
+          "courses":courseSet
+        };
+        console.log('response in getCourses=');
+        console.log(response);
+        return res.status(200).json(response);
+
+    });
+
   },
   create: function(req,res) {
     var form = new formidable.IncomingForm();
@@ -62,5 +65,23 @@ module.exports = {
       "success":true
     };    
     return res.status(200).json(response);
+  },
+  delete: function(req,res) {
+    body = req.body;
+    var courseName = body.courseName;
+    console.log('courseName in server delete method='+courseName);
+    //var Model = new CourseModel();
+    CourseModel.findOneAndRemove({ name: courseName }, function(err, todo) {
+        if (!err) {
+                console.log('remove successfully');
+        }
+        else {
+                console.log('remove failed');
+        }
+    });   
+    var response = {
+      "success":true
+    };    
+    return res.status(200).json(response);     
   }
 }
