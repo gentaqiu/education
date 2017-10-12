@@ -12,8 +12,6 @@ module.exports = {
           "success":true,
           "courses":courseSet
         };
-        console.log('response in getCourses=');
-        console.log(response);
         return res.status(200).json(response);
 
     });
