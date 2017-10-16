@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { UploadOutput, UploadInput, UploadFile, humanizeBytes, UploaderOptions } from 'ngx-uploader';
 import { CourseService } from '../../service/course.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'admin-course',
@@ -17,7 +18,7 @@ export class CourseComponent {
   courseName: string;
   courses = [];
 
-  constructor(private courseService:CourseService) {
+  constructor(private courseService:CourseService,private router: Router) {
     this.files = []; // local uploading files array
     this.uploadInput = new EventEmitter<UploadInput>(); // input events, we use this to emit data to ngx-uploader
     this.humanizeBytes = humanizeBytes;
@@ -32,6 +33,10 @@ export class CourseComponent {
               console.log(err);
           }
       );        
+  }
+
+  listQuestions(courseName:string) {
+    this.router.navigate(['/admin/question/list',courseName]);
   }
 
   onUploadOutput(output: UploadOutput): void {

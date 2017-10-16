@@ -4,6 +4,7 @@ import {CorrectAnswerComponent} from '../components/correct-answer';
 import {WrongAnswerComponent} from '../components/wrong-answer';
 import { VoiceService } from '../../service/voice.service';
 import { CourseService } from '../../service/course.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-courses',

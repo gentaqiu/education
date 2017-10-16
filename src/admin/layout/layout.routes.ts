@@ -7,6 +7,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'index', pathMatch: 'full' },
       { path: 'index', loadChildren:'admin/index/index.module#IndexModule' },
       { path: 'course', loadChildren:'admin/course/course.module#CourseModule' },
+      { path: 'question/list/:course_name', loadChildren:'admin/question/question.module#QuestionModule' },
     ]
   }
 ];
