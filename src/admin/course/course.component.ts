@@ -36,7 +36,7 @@ export class CourseComponent {
   }
 
   listQuestions(courseName:string) {
-    this.router.navigate(['/admin/question/list',courseName]);
+    this.router.navigate(['/admin/question',courseName]);
   }
 
   onUploadOutput(output: UploadOutput): void {
