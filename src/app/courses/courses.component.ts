@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatSnackBar} from '@angular/material';
-import {CorrectAnswerComponent} from '../components/correct-answer';
-import {WrongAnswerComponent} from '../components/wrong-answer';
+import {CorrectAnswerComponent} from '../../components/correct-answer';
+import {WrongAnswerComponent} from '../../components/wrong-answer';
 import { VoiceService } from '../../service/voice.service';
 import { CourseService } from '../../service/course.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';

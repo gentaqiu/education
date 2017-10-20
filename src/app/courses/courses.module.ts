@@ -1,6 +1,6 @@
 import { CoursesComponent } from './courses.component';
-import {CorrectAnswerComponent} from '../components/correct-answer';
-import {WrongAnswerComponent} from '../components/wrong-answer';
+import {CorrectAnswerComponent} from '../../components/correct-answer';
+import {WrongAnswerComponent} from '../../components/wrong-answer';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';

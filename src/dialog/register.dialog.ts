@@ -1,38 +1,44 @@
 import {Component, Inject, ViewChild, TemplateRef, OnInit} from '@angular/core';
 import {DOCUMENT} from '@angular/platform-browser';
-import { UsersService } from '../../service/users.service';
-import { AuthService } from '../../service/auth.service';
+import { UsersService } from '../service/users.service';
+import { AuthService } from '../service/auth.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-
 @Component({
-  selector: 'login-dialog',
+  selector: 'register-dialog',
   styles: [
     `iframe {
       width: 800px;
     }`
   ],
-  templateUrl: 'login.html'
+  templateUrl: 'register.html'
 })
-export class LoginDialog {
+export class RegisterDialog {
   alert_message:string;
   constructor(
-    public dialogRef: MatDialogRef<LoginDialog>,
+    public dialogRef: MatDialogRef<RegisterDialog>,
     @Inject(MAT_DIALOG_DATA) public data: any,private usersService: UsersService,private authService: AuthService) { 
       this.alert_message = "";
     }
 
-  onConfirmClick(email:string,password:string): void {
-    console.log('onConfirmClick in login');
-      this.usersService.login(email,password).subscribe(    
+  onConfirmClick(fullname:string,email:string,password:string,repeat_password:string): void {
+    console.log('onConfirmClick in register');
+    if(password != repeat_password) {
+      this.alert_message = "Passwords Do Not Match!";
+    }
+    else {
+      this.usersService.createUser(fullname,email,password).subscribe(    
         suc => {
             this.authService.saveToken(suc.token);
             this.dialogRef.close();
         },
         err => {
-            console.log(err);
-            this.alert_message = "Invalid Email or Password!";
+            console.log(err );
+            this.alert_message = "Email already existed!";
         }
       );
+
+      
+    }
     
   }
 

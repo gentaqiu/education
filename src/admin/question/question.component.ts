@@ -10,24 +10,20 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class QuestionComponent {
   course_name: string;
-  operation: string;
   private sub: any;
-  questionTemplateUrl: string;
 
   constructor(private route: ActivatedRoute,private router: Router) {}
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-       this.course_name = params['course_name']; 
-       this.operation = params['operation'];
-       this.questionTemplateUrl = 'question-list.html';
+       this.course_name = params['course_name'];
     });
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
   }  
-  createQuestion(courseName:string) {
-    this.router.navigate(['/admin/question/add',courseName]);
+  createQuestion() {
+    console.log('create question for ' + this.course_name);
   }
 }
