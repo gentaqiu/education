@@ -7,7 +7,7 @@ import { ROUTES } from './layout.routes';
 import { LayoutComponent } from './layout.component';
 import { RouterModule } from '@angular/router';
 import { CKEditorModule } from 'ng2-ckeditor';
-import {MatFormFieldModule,MatIconModule,MatMenuModule,MatDialogModule} from '@angular/material';
+import {MatFormFieldModule,MatIconModule,MatMenuModule,MatDialogModule,MatInputModule,MatButtonModule} from '@angular/material';
 @NgModule({
   imports: [
     CommonModule,
@@ -17,6 +17,8 @@ import {MatFormFieldModule,MatIconModule,MatMenuModule,MatDialogModule} from '@a
     MatIconModule,
     MatMenuModule,
     MatDialogModule,
+    MatInputModule,
+    MatButtonModule,
     CKEditorModule    
   ],
   declarations: [

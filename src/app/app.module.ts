@@ -16,7 +16,7 @@ import { LoginDialog } from '../dialog/login.dialog';
 import { MenuDemo } from './menu/menu-demo';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CKEditorModule } from 'ng2-ckeditor';
-import {MatFormFieldModule} from '@angular/material';
+import {MatFormFieldModule,MatInputModule,MatButtonModule} from '@angular/material';
 
 import 'hammerjs';
 
@@ -59,6 +59,8 @@ const ROUTES = [
     BrowserAnimationsModule,
     CKEditorModule,
     MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
     RouterModule.forRoot(ROUTES) // Add routes to the app
   ],
   providers: [PostsService,UsersService,AuthService,VoiceService,CourseService],

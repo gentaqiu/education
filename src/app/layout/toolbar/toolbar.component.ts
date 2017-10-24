@@ -4,7 +4,7 @@ import { NgIf } from '@angular/common';
 import { RegisterDialog } from '../../../dialog/register.dialog';
 import { LoginDialog } from '../../../dialog/login.dialog';
 import { AuthService } from '../../../service/auth.service';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA,MatFormFieldModule,MatIconModule} from '@angular/material';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA,MatFormFieldModule,MatIconModule,MatButtonModule} from '@angular/material';
 
 @Component({
     selector: 'education-toolbar',
