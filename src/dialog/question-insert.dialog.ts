@@ -20,10 +20,14 @@ export class QuestionInsertDialog {
       this.alert_message = "";
     }
 
-  onConfirmClick(email:string,password:string): void {
-
+  onConfirmClick(title:string,answerA:string,answerB:string,answerC:string,answerD:string,correctAnswer:string): void {
+    console.log("confirm for " + title);
     
   }
 
+  onCancelClick(): void {
+    console.log('cancel me');
+    this.dialogRef.close();
+  }
 
 }

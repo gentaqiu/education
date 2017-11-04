@@ -13,7 +13,11 @@
     </mat-form-field>
   </div>
   <div class="form-row">
-  <input type="file" ngFileSelect [options]="options" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" multiple>	
+    <button mat-raised-button color="primary" md-button (click)="imgFileInput.click()">Add a photo</button>
+    
+      <input hidden type="file" #imgFileInput ngFileSelect [options]="options" (change)="onUploadOutput($event)" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" multiple>	
+      
+    
   </div>
   <div class="form-row">
   	<button mat-raised-button color="primary" (click)="startUpload()">Create</button>
