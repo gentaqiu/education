@@ -1,3 +1,5 @@
+ng build && PORT=3014 node server.js
+
 ng build --watch && PORT=3014 node server.js
 
 https://github.com/angular/material2/issues/2315

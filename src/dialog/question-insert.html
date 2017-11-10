@@ -1,6 +1,11 @@
 
     <form class="example-form">
       <div>
+        <button mat-raised-button (click)="insertAudio();imgFileInput.click();">Insert Audio</button>
+        <button mat-raised-button (click)="insertPhoto();imgFileInput.click();">Insert Photo</button>
+        <input hidden type="file" #imgFileInput ngFileSelect [options]="options" (change)="onUploadOutput($event)" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" multiple>          
+      </div>        
+      <div>
       <mat-form-field class="example-full-width">
         <input #title matInput placeholder="Title" value="">
       </mat-form-field>
