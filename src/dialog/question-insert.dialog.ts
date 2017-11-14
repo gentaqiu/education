@@ -1,6 +1,6 @@
 import {Component, Inject,  TemplateRef, OnInit,EventEmitter} from '@angular/core';
 import {DOCUMENT} from '@angular/platform-browser';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA,MatFormFieldModule} from '@angular/material';
 import { UploadOutput, UploadInput, UploadFile, humanizeBytes, UploaderOptions } from 'ngx-uploader';
 
 @Component({
@@ -19,14 +19,28 @@ export class QuestionInsertDialog {
   uploadInput: EventEmitter<UploadInput>;
   dragOver: boolean;
   alert_message:string;
+  title:string;
+  answerA:string;
+  answerB:string;
+  answerC:string;
+  answerD:string;
+  correctAnswer:string;
   constructor(
     public dialogRef: MatDialogRef<QuestionInsertDialog>,
     @Inject(MAT_DIALOG_DATA) public data: any) { 
       this.alert_message = "";
+    this.files = []; // local uploading files array
+    this.uploadInput = new EventEmitter<UploadInput>(); // input events, we use this to emit data to ngx-uploader  
+    this.title = ""; 
+    this.answerA = "";
+    this.answerB = "";
+    this.answerC = "";
+    this.answerD = "";
+    this.correctAnswer = "";   
     }
 
-  onConfirmClick(title:string,answerA:string,answerB:string,answerC:string,answerD:string,correctAnswer:string): void {
-    console.log("confirm for " + title);
+  onConfirmClick(): void {
+    console.log("confirm for " + this.title);
     
   }
 
@@ -40,35 +54,54 @@ export class QuestionInsertDialog {
   }
 
   startUpload(): void {
+  /*
     const event: UploadInput = {
       type: 'uploadAll',
-      url: '/api/course/create',
+      url: '/api/file/upload',
       method: 'POST',
       data: { courseName: this.courseName }
     };
  
     this.uploadInput.emit(event);
+  */
   }
 
   onUploadOutput(output: UploadOutput): void {
     if (output.type === 'allAddedToQueue') { // when all files added in queue
       // uncomment this if you want to auto upload files when added
-      // const event: UploadInput = {
-      //   type: 'uploadAll',
-      //   url: '/upload',
-      //   method: 'POST',
-      //   data: { foo: 'bar' }
-      // };
-      // this.uploadInput.emit(event);
+       const event: UploadInput = {
+         type: 'uploadAll',
+         url: '/api/file/upload',
+         method: 'POST',
+         data: { courseName: this.courseName }
+       };
+       this.uploadInput.emit(event);
     } else if (output.type === 'addedToQueue'  && typeof output.file !== 'undefined') { // add file to array when added
-      this.files.push(output.file);
+      //this.files.push(output.file);
     } else if (output.type === 'uploading' && typeof output.file !== 'undefined') {
       // update current data in files array for uploading file
+      /*
       const index = this.files.findIndex(file => typeof output.file !== 'undefined' && file.id === output.file.id);
       this.files[index] = output.file;
       var filename = output.file.name;
-      var item = {name:this.courseName,image:'assets/uploads/' + filename};
-      this.courses.push(item);
+      //console.log("output=");
+      //console.log(output);
+      var file = output.file;
+      console.log("file === ");
+      console.log(file);
+      var response = file.response;
+      console.log(response);
+      
+      var filepath = response.filepath;
+      console.log(filepath);
+      this.title += filepath;
+      */
+    } else if(output.type === 'done' && typeof output.file !== 'undefined') {
+      var response = output.file.response;
+      console.log(response);
+      var filepath = response.filepath;
+      console.log(filepath);
+      this.title += filepath;      
     } else if (output.type === 'removed') {
       // remove file from array when removed
       this.files = this.files.filter((file: UploadFile) => file !== output.file);

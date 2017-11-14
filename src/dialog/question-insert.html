@@ -1,42 +1,42 @@
 
-    <form class="example-form">
+    <form class="example-form">       
       <div>
+        <input hidden type="file" #imgFileInput ngFileSelect [options]="options" (change)="onUploadOutput($event)" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" multiple>         
+      <mat-form-field class="example-full-width">
+        <input [(ngModel)]="title" name="title" matInput placeholder="Title" value="">
         <button mat-raised-button (click)="insertAudio();imgFileInput.click();">Insert Audio</button>
         <button mat-raised-button (click)="insertPhoto();imgFileInput.click();">Insert Photo</button>
-        <input hidden type="file" #imgFileInput ngFileSelect [options]="options" (change)="onUploadOutput($event)" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" multiple>          
-      </div>        
-      <div>
-      <mat-form-field class="example-full-width">
-        <input #title matInput placeholder="Title" value="">
       </mat-form-field>
       </div>
       <div>
       <mat-form-field class="example-full-width">
-        <input #answerA matInput placeholder="Answer A" value="">
+        <input [(ngModel)]="answerA" name="answerA" matInput placeholder="Answer A" value="">
       </mat-form-field>      
       </div>
       <div>
       <mat-form-field class="example-full-width">
-        <input #answerB matInput  placeholder="Answer B" value="">
+        <input [(ngModel)]="answerB" name="answerB" matInput  placeholder="Answer B" value="">
       </mat-form-field>
       </div>
       <div>
       <mat-form-field class="example-full-width">
-        <input #answerC matInput  placeholder="Answer C" value="">
+        <input [(ngModel)]="answerC" name="answerC" matInput  placeholder="Answer C" value="">
       </mat-form-field>
       </div>
       <div>
       <mat-form-field class="example-full-width">
-        <input #answerD matInput  placeholder="Answer D" value="">
+        <input [(ngModel)]="answerD" name="answerD" matInput  placeholder="Answer D" value="">
       </mat-form-field>
   	  </div>
   	  <div>
       <mat-form-field class="example-full-width">
-        <input #correctAnswer matInput  placeholder="Correct Answer" value="">
+    <mat-select placeholder="Select">
+      <mat-option value="option">Option</mat-option>
+    </mat-select>       
       </mat-form-field>      
       </div>      
       <div>
-        <button mat-raised-button (click)="onConfirmClick(title.value,answerA.value,answerB.value,answerC.value,answerD.value,correctAnswer.value)">Confirm</button>
+        <button mat-raised-button (click)="onConfirmClick()">Confirm</button>
         <button mat-raised-button (click)="onCancelClick()">Cancel</button>
       </div>        
       <div class="alert_message">
