@@ -5,7 +5,6 @@ import { ROUTES } from './layout.routes';
 
 import { LayoutComponent } from './layout.component';
 import { RouterModule } from '@angular/router';
-import { CKEditorModule } from 'ng2-ckeditor';
 import {MatMenuModule,MatButtonModule} from '@angular/material';
 
 @NgModule({
@@ -14,8 +13,7 @@ import {MatMenuModule,MatButtonModule} from '@angular/material';
     RouterModule.forChild(ROUTES),
     FormsModule,
     MatMenuModule,
-    MatButtonModule,
-    CKEditorModule    
+    MatButtonModule  
   ],
   declarations: [
     LayoutComponent

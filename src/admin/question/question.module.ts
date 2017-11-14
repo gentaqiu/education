@@ -4,7 +4,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgUploaderModule } from 'ngx-uploader';
-import {MatFormFieldModule,MatInputModule,MatButtonModule,MatGridListModule,MatCardModule,MatDialogModule} from '@angular/material';
+import {MatInputModule,MatButtonModule,MatGridListModule,MatCardModule,MatDialogModule} from '@angular/material';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
 import { QuestionInsertDialog } from '../../dialog/question-insert.dialog';
 
 export const routes = [
@@ -23,6 +25,7 @@ export const routes = [
     MatGridListModule,
     MatCardModule,
     MatDialogModule,
+    MatSelectModule,
     NgUploaderModule
   ],
   entryComponents: [QuestionInsertDialog],

@@ -30,9 +30,12 @@
   	  </div>
   	  <div>
       <mat-form-field class="example-full-width">
-    <mat-select placeholder="Select">
-      <mat-option value="option">Option</mat-option>
-    </mat-select>       
+        <mat-select [(ngModel)]="correctAnswer" name="correctAnswer" placeholder="Correct Answer">
+          <mat-option value="A">A</mat-option>
+          <mat-option value="B">B</mat-option>
+          <mat-option value="C">C</mat-option>
+          <mat-option value="D">D</mat-option>
+        </mat-select>
       </mat-form-field>      
       </div>      
       <div>
