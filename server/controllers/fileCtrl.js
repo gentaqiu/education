@@ -2,7 +2,6 @@ const fs = require('fs');
 var formidable = require('formidable');
 module.exports = {
   upload : function(req, res) {
-    console.log("upload a file");
     var form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files) {
 

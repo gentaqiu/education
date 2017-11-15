@@ -5,11 +5,7 @@ import { UploadOutput, UploadInput, UploadFile, humanizeBytes, UploaderOptions }
 
 @Component({
   selector: 'question-insert-dialog',
-  styles: [
-    `iframe {
-      width: 800px;
-    }`
-  ],
+  styleUrls: ['question-insert.dialog.css'],
   templateUrl: 'question-insert.html'
 })
 export class QuestionInsertDialog {
@@ -24,6 +20,7 @@ export class QuestionInsertDialog {
   answerB:string;
   answerC:string;
   answerD:string;
+  currentInputID:string;
   correctAnswer:string;
   constructor(
     public dialogRef: MatDialogRef<QuestionInsertDialog>,
@@ -36,6 +33,7 @@ export class QuestionInsertDialog {
     this.answerB = "";
     this.answerC = "";
     this.answerD = "";
+    this.currentInputID = "";
     this.correctAnswer = "";   
     }
 
@@ -53,6 +51,10 @@ export class QuestionInsertDialog {
   insertPhoto(): void {
   }
 
+  changeText(event): void {
+    var id = event.target.id;
+    this.currentInputID = id;
+  }
   startUpload(): void {
   /*
     const event: UploadInput = {
@@ -79,29 +81,11 @@ export class QuestionInsertDialog {
     } else if (output.type === 'addedToQueue'  && typeof output.file !== 'undefined') { // add file to array when added
       //this.files.push(output.file);
     } else if (output.type === 'uploading' && typeof output.file !== 'undefined') {
-      // update current data in files array for uploading file
-      /*
-      const index = this.files.findIndex(file => typeof output.file !== 'undefined' && file.id === output.file.id);
-      this.files[index] = output.file;
-      var filename = output.file.name;
-      //console.log("output=");
-      //console.log(output);
-      var file = output.file;
-      console.log("file === ");
-      console.log(file);
-      var response = file.response;
-      console.log(response);
-      
-      var filepath = response.filepath;
-      console.log(filepath);
-      this.title += filepath;
-      */
+
     } else if(output.type === 'done' && typeof output.file !== 'undefined') {
       var response = output.file.response;
-      console.log(response);
       var filepath = response.filepath;
-      console.log(filepath);
-      this.title += filepath;      
+      this[this.currentInputID] += filepath;      
     } else if (output.type === 'removed') {
       // remove file from array when removed
       this.files = this.files.filter((file: UploadFile) => file !== output.file);

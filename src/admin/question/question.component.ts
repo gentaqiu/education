@@ -27,6 +27,9 @@ export class QuestionComponent {
   }  
   createQuestion() {
     console.log('create question for ' + this.course_name);
-    let registerDialogRef = this.dialog.open(QuestionInsertDialog);
+    let registerDialogRef = this.dialog.open(QuestionInsertDialog,{
+      height: '500px',
+      width: '600px',
+    });
   }
 }
