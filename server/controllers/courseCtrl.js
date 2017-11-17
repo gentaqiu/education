@@ -33,36 +33,32 @@ module.exports = {
       var coursemodel = { name: courseName,image:filepath };
 
       var course = new CourseModel(coursemodel);
-      course.save(function (err, course) {
-        if (err)  {
-          //return res.status(403).json('{"success":"false"}');
-        }
-        else {
-          //return res.status(200).json('{"success":"true"}');
-        }
-      });
 
       var srcpath = __dirname + '/../../src/assets/uploads/' + files.file.name;
 
       fs.createReadStream(oldpath).pipe(fs.createWriteStream(srcpath));
-      /*
-      fs.copySync(oldpath, srcpath, function (err) {
-        if (err) throw err;
-        //res.write('File uploaded and moved!');
-        //res.end();
-      });
-      */      
+   
       fs.renameSync(oldpath, newpath, function (err) {
         if (err) throw err;
-        //res.write('File uploaded and moved!');
-        //res.end();
-      });
-    });
 
-    var response = {
-      "success":true
-    };    
-    return res.status(200).json(response);
+      });      
+      course.save(function (err, course) {
+        if (err)  {
+        }
+        else {
+        }
+      });
+      
+      var response = {
+        "success":true,
+        "course":course
+      };    
+      return res.status(200).json(response);
+
+    });
+    
+
+    
   },
   delete: function(req,res) {
     body = req.body;

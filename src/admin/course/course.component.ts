@@ -52,12 +52,11 @@ export class CourseComponent {
     } else if (output.type === 'addedToQueue'  && typeof output.file !== 'undefined') { // add file to array when added
       this.files.push(output.file);
     } else if (output.type === 'uploading' && typeof output.file !== 'undefined') {
-      // update current data in files array for uploading file
-      const index = this.files.findIndex(file => typeof output.file !== 'undefined' && file.id === output.file.id);
-      this.files[index] = output.file;
-      var filename = output.file.name;
-      var item = {name:this.courseName,image:'assets/uploads/' + filename};
-      this.courses.push(item);
+
+    } else if(output.type === 'done' && typeof output.file !== 'undefined') {
+      var response = output.file.response;
+      var course = response.course;
+      this.courses.push(course);
     } else if (output.type === 'removed') {
       // remove file from array when removed
       this.files = this.files.filter((file: UploadFile) => file !== output.file);

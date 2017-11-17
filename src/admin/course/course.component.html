@@ -32,7 +32,7 @@
 
       <img mat-card-image src="{{course.image}}" alt="{{course.name}}">
       <div>
-        <button mat-raised-button (click)="listQuestions(course.name)">{{course.name}}</button>
+        <button mat-raised-button (click)="listQuestions(course._id)">{{course.name}}</button>
 
         <button mat-raised-button (click)="deleteCourse(course.name)">Delete</button>
     </div>  
