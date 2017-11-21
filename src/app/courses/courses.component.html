@@ -1,40 +1,40 @@
-<md-card>
-  <md-card-content>
+<mat-card>
+  <mat-card-content>
     <h2 class="example-h2"></h2>
-    <!--
+    
     <section class="example-section">
-      <md-progress-bar
+      <mat-progress-bar
           class="example-margin"
           [color]="color"
           [mode]="mode"
           [value]="value"
           [bufferValue]="bufferValue">
-      </md-progress-bar>
+      </mat-progress-bar>
     </section>
-  -->
-  </md-card-content>
-  <md-card-actions>
+  
+  </mat-card-content>
+  <mat-card-actions>
     <div class="div-test-title">
-      <button md-icon-button (click)="playVoice('你好吗')"> <img class="img-inline" src="assets/voice.jpg" alt="Voice"></button>
+      <button mat-icon-button (click)="playVoice('你好吗')"> <img class="img-inline" src="assets/voice.jpg" alt="Voice"></button>
       <font class="test-title">你好</font>
     </div>
-    <md-grid-list cols="{{col_num}}" rowHeight="8:4">
-      <md-grid-tile>
-        <button md-raised-button color="{{color_A}}" (click)="selectAnswer('A')">Sorry</button>
-      </md-grid-tile>
-      <md-grid-tile>
-        <button md-raised-button color="{{color_B}}" (click)="selectAnswer('B')">Goodbye</button>
-      </md-grid-tile>
-      <md-grid-tile>
-        <button md-raised-button color="{{color_C}}" (click)="selectAnswer('C')">Thank you</button>
-      </md-grid-tile>
-      <md-grid-tile>
-        <button md-raised-button color="{{color_D}}" (click)="selectAnswer('D')">Hello</button>    
-      </md-grid-tile>  
-    </md-grid-list>
+    <mat-grid-list cols="{{col_num}}" rowHeight="8:4">
+      <mat-grid-tile>
+        <button mat-raised-button color="{{color_A}}" (click)="selectAnswer('A')">Sorry</button>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button mat-raised-button color="{{color_B}}" (click)="selectAnswer('B')">Goodbye</button>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button mat-raised-button color="{{color_C}}" (click)="selectAnswer('C')">Thank you</button>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button mat-raised-button color="{{color_D}}" (click)="selectAnswer('D')">Hello</button>    
+      </mat-grid-tile>  
+    </mat-grid-list>
 
     <div class="test-check">
-      <button md-raised-button disabled="{{check_disable}}" color="{{color_check}}" (click)="checkAnswer()">Check</button>
+      <button mat-raised-button disabled="{{check_disable}}" color="{{color_check}}" (click)="checkAnswer()">Check</button>
     </div>
-  </md-card-actions>
-</md-card>
+  </mat-card-actions>
+</mat-card>
