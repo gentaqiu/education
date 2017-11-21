@@ -69,7 +69,7 @@ export class CourseComponent {
     }
   }
  
-  startUpload(): void {
+  createCourse(): void {
     const event: UploadInput = {
       type: 'uploadAll',
       url: '/api/course/create',

@@ -3,6 +3,7 @@ var userCtrl = require('../controllers/userCtrl.js');
 var voiceCtrl = require('../controllers/voiceCtrl.js');
 var courseCtrl = require('../controllers/courseCtrl.js');
 var fileCtrl = require('../controllers/fileCtrl.js');
+var questionCtrl = require('../controllers/questionCtrl.js');
 
 var jwt = require('express-jwt');
 var auth = jwt({
@@ -27,5 +28,6 @@ router.post('/voice/path', voiceCtrl.path);
 router.post('/course/create', courseCtrl.create);
 router.post('/course/delete', courseCtrl.delete);
 router.post('/file/upload', fileCtrl.upload);
+router.post('/question/create', questionCtrl.create);
 
 module.exports = router;

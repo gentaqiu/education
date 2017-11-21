@@ -3,6 +3,7 @@ import {DOCUMENT} from '@angular/platform-browser';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA,MatFormFieldModule} from '@angular/material';
 import { UploadOutput, UploadInput, UploadFile, humanizeBytes, UploaderOptions } from 'ngx-uploader';
 
+
 @Component({
   selector: 'question-insert-dialog',
   styleUrls: ['question-insert.dialog.css'],
@@ -15,6 +16,7 @@ export class QuestionInsertDialog {
   uploadInput: EventEmitter<UploadInput>;
   dragOver: boolean;
   alert_message:string;
+  course_id:string;
   title:string;
   answerA:string;
   answerB:string;
@@ -22,12 +24,14 @@ export class QuestionInsertDialog {
   answerD:string;
   currentInputID:string;
   correctAnswer:string;
+
   constructor(
     public dialogRef: MatDialogRef<QuestionInsertDialog>,
     @Inject(MAT_DIALOG_DATA) public data: any) { 
       this.alert_message = "";
     this.files = []; // local uploading files array
-    this.uploadInput = new EventEmitter<UploadInput>(); // input events, we use this to emit data to ngx-uploader  
+    this.uploadInput = new EventEmitter<UploadInput>(); // input events, we use this to emit data to ngx-uploader 
+    this.course_id = ""; 
     this.title = ""; 
     this.answerA = "";
     this.answerB = "";
@@ -35,11 +39,15 @@ export class QuestionInsertDialog {
     this.answerD = "";
     this.currentInputID = "";
     this.correctAnswer = "";   
-    }
+  }
 
+  
   onConfirmClick(): void {
+
     console.log("confirm for " + this.title);
-    
+    var question = {title:this.title,answerA:this.answerA,answerB:this.answerB,answerC:this.answerC,answerD:this.answerD,correctAnswer:this.correctAnswer};
+    this.dialogRef.close(question);
+
   }
 
   onCancelClick(): void {

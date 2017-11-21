@@ -8,6 +8,7 @@ import {MatInputModule,MatButtonModule,MatGridListModule,MatCardModule,MatDialog
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import { QuestionInsertDialog } from '../../dialog/question-insert.dialog';
+import { QuestionService } from '../../service/question.service';
 
 export const routes = [
     { path: '', component: QuestionComponent, pathMatch: 'full' },
@@ -33,7 +34,7 @@ export const routes = [
    QuestionComponent,
    QuestionInsertDialog
   ],
-  
+  providers: [QuestionService],
 
 })
 export  class QuestionModule {
