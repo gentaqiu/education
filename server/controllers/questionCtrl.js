@@ -4,13 +4,15 @@ const fs = require('fs');
 var formidable = require('formidable');
 
 module.exports = {
-  getQuestions : function(req, res) {
-    var courseSet = [];
-    CourseModel.find({}, function (err, courses) {
-        courseSet = courses;
+  list : function(req, res) {
+    var questionSet = [];
+    body = req.body;
+    var course_id = body.course_id;   
+    QuestionModel.find({course_id:course_id}, function (err, questions) {
+    		questionSet = questions;
         var response = {
           "success":true,
-          "courses":courseSet
+          "questions":questionSet
         };
         return res.status(200).json(response);
 

@@ -29,5 +29,5 @@ router.post('/course/create', courseCtrl.create);
 router.post('/course/delete', courseCtrl.delete);
 router.post('/file/upload', fileCtrl.upload);
 router.post('/question/create', questionCtrl.create);
-
+router.post('/question/list', questionCtrl.list);
 module.exports = router;

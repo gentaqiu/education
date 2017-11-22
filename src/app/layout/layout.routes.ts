@@ -6,7 +6,7 @@ const routes: Routes = [
     path: '', component: LayoutComponent, children: [
       { path: '', redirectTo: 'index', pathMatch: 'full' },
       { path: 'index', loadChildren:'app/index/index.module#IndexModule' },
-      { path: 'courses/:name', loadChildren:'app/courses/courses.module#CoursesModule' }
+      { path: 'courses/:course_id', loadChildren:'app/courses/courses.module#CoursesModule' }
     ]
   }
 ];

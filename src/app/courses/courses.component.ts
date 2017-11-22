@@ -4,6 +4,7 @@ import {CorrectAnswerComponent} from '../../components/correct-answer';
 import {WrongAnswerComponent} from '../../components/wrong-answer';
 import { VoiceService } from '../../service/voice.service';
 import { CourseService } from '../../service/course.service';
+import { QuestionService } from '../../service/question.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
@@ -15,6 +16,9 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
       }    
 })
 export class CoursesComponent implements OnInit {
+  course_id: string;
+  index:number;
+  private sub: any;  
   color = 'primary';
   mode = 'determinate';
   value = 50;
@@ -28,9 +32,9 @@ export class CoursesComponent implements OnInit {
   check_disable = true;
   color_check = "";
   soundID = "Thunder";
-  
+  questions = [];
 
-  constructor(public snackBar: MatSnackBar,private voiceService: VoiceService,private courseService:CourseService) { }
+  constructor(private route: ActivatedRoute, public snackBar: MatSnackBar,private questionService: QuestionService,private voiceService: VoiceService,private courseService:CourseService,private router: Router) { }
 
     setColNum() {
         this.col_num = 4;
@@ -44,9 +48,25 @@ export class CoursesComponent implements OnInit {
     }
 
   ngOnInit() {
+    this.index = 0;
     this.setColNum();  
+    this.sub = this.route.params.subscribe(params => {
+       this.course_id = params['course_id'];
+      this.questionService.getQuestions(this.course_id).subscribe(    
+          suc => {
+              //console.log(suc);
+              this.questions = suc.questions;
+          },
+          err => {
+              console.log(err);
+          }
+      );        
+    });   
+     
   }
-
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }  
   selectAnswer(selection:string) {
     this.selection = selection;
     if(selection == 'A') {
@@ -68,7 +88,7 @@ export class CoursesComponent implements OnInit {
       this.color_D = "";      
     }
     else if(selection == 'D') {
-      this.color_A = "";
+      this.color_A = '';
       this.color_B = "";
       this.color_C = "";
       this.color_D = "primary";      

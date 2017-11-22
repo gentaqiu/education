@@ -10,6 +10,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { QuestionService } from '../../service/question.service';
 
 export const routes = [
     { path: '', component: CoursesComponent, pathMatch: 'full' },
@@ -32,8 +33,8 @@ export const routes = [
    WrongAnswerComponent
 
   ],
-  entryComponents: [CorrectAnswerComponent,WrongAnswerComponent]
-
+  entryComponents: [CorrectAnswerComponent,WrongAnswerComponent],
+  providers: [QuestionService],
 })
 export  class CoursesModule {
 }

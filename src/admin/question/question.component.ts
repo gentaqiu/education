@@ -3,7 +3,7 @@ import { UploadOutput, UploadInput, UploadFile, humanizeBytes, UploaderOptions }
 import { CourseService } from '../../service/course.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { QuestionInsertDialog } from '../../dialog/question-insert.dialog';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA,MatFormFieldModule,MatIconModule,MatButtonModule} from '@angular/material';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatFormFieldModule, MatIconModule,MatButtonModule} from '@angular/material';
 import { QuestionService } from '../../service/question.service';
 
 @Component({
