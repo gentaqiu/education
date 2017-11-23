@@ -14,6 +14,7 @@ export class QuestionInsertDialog {
   courseName: string;
   courses = [];
   uploadInput: EventEmitter<UploadInput>;
+  file_type:string;
   dragOver: boolean;
   alert_message:string;
   course_id:string;
@@ -55,8 +56,10 @@ export class QuestionInsertDialog {
     this.dialogRef.close();
   }
   insertAudio(): void {
+    this.file_type = 'A';
   }
   insertPhoto(): void {
+    this.file_type = 'P';
   }
 
   changeText(event): void {
@@ -93,7 +96,10 @@ export class QuestionInsertDialog {
     } else if(output.type === 'done' && typeof output.file !== 'undefined') {
       var response = output.file.response;
       var filepath = response.filepath;
-      this[this.currentInputID] += filepath;      
+      if(this.file_type == 'A') {
+        this[this.currentInputID] += '<button class="mat-icon-button" mat-icon-button (click)="playVoice(\'' + filepath + '\')"> <i class="material-icons">volume_up</i> </button>'; 
+      }
+
     } else if (output.type === 'removed') {
       // remove file from array when removed
       this.files = this.files.filter((file: UploadFile) => file !== output.file);

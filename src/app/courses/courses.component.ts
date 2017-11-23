@@ -6,6 +6,7 @@ import { VoiceService } from '../../service/voice.service';
 import { CourseService } from '../../service/course.service';
 import { QuestionService } from '../../service/question.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-courses',
@@ -18,6 +19,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 export class CoursesComponent implements OnInit {
   course_id: string;
   index:number;
+  question_num:number;
   private sub: any;  
   color = 'primary';
   mode = 'determinate';
@@ -33,8 +35,9 @@ export class CoursesComponent implements OnInit {
   color_check = "";
   soundID = "Thunder";
   questions = [];
+  question: any;
 
-  constructor(private route: ActivatedRoute, public snackBar: MatSnackBar,private questionService: QuestionService,private voiceService: VoiceService,private courseService:CourseService,private router: Router) { }
+  constructor(private route: ActivatedRoute, public snackBar: MatSnackBar,private questionService: QuestionService,private voiceService: VoiceService,private courseService:CourseService,private router: Router,private sanitizer: DomSanitizer) { }
 
     setColNum() {
         this.col_num = 4;
@@ -56,6 +59,9 @@ export class CoursesComponent implements OnInit {
           suc => {
               //console.log(suc);
               this.questions = suc.questions;
+              this.question_num = this.questions.length;
+              this.question = this.questions[this.index];
+              this.question.title = this.sanitizer.bypassSecurityTrustHtml(this.question.title);
           },
           err => {
               console.log(err);
@@ -98,10 +104,15 @@ export class CoursesComponent implements OnInit {
   }
 
   checkAnswer() {
-    if(this.selection == 'A') {
+    if(this.selection == this.question.correctAnswer) {
       this.snackBar.openFromComponent(CorrectAnswerComponent, {
         duration: 50000,
       });     
+      if(this.index < this.question_num - 1) {
+        this.index ++;
+        this.question = this.questions[this.index];
+        this.question.title = this.sanitizer.bypassSecurityTrustHtml(this.question.title);
+      }
     }
     else {
       this.snackBar.openFromComponent(WrongAnswerComponent, {

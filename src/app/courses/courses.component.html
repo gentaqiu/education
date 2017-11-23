@@ -13,23 +13,26 @@
     </section>
   
   </mat-card-content>
-  <mat-card-actions>
-    <div class="div-test-title">
-      <button mat-icon-button (click)="playVoice('你好吗')"> <img class="img-inline" src="assets/voice.jpg" alt="Voice"></button>
-      <font class="test-title">你好</font>
+  <mat-card-actions *ngIf="question">
+    <div class="div-test-title" [innerHTML]="question.title">
+      <!--
+      <button mat-icon-button (click)="playVoice('你好吗')"> <i class="material-icons">volume_up</i> </button>
+      {{question.title}}
+    -->
     </div>
+    <button mat-icon-button="" (click)="playVoice('assets/uploads/4Y-Small-Long-1-4-Pound.jpg')"> <i class="material-icons">volume_up</i> </button>
     <mat-grid-list cols="{{col_num}}" rowHeight="8:4">
       <mat-grid-tile>
-        <button mat-raised-button color="{{color_A}}" (click)="selectAnswer('A')">Sorry</button>
+        <button mat-raised-button color="{{color_A}}" (click)="selectAnswer('A')">{{question.answerA}}</button>
       </mat-grid-tile>
       <mat-grid-tile>
-        <button mat-raised-button color="{{color_B}}" (click)="selectAnswer('B')">Goodbye</button>
+        <button mat-raised-button color="{{color_B}}" (click)="selectAnswer('B')">{{question.answerB}}</button>
       </mat-grid-tile>
       <mat-grid-tile>
-        <button mat-raised-button color="{{color_C}}" (click)="selectAnswer('C')">Thank you</button>
+        <button mat-raised-button color="{{color_C}}" (click)="selectAnswer('C')">{{question.answerC}}</button>
       </mat-grid-tile>
       <mat-grid-tile>
-        <button mat-raised-button color="{{color_D}}" (click)="selectAnswer('D')">Hello</button>    
+        <button mat-raised-button color="{{color_D}}" (click)="selectAnswer('D')">{{question.answerD}}</button>    
       </mat-grid-tile>  
     </mat-grid-list>
 
