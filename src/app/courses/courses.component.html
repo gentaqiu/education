@@ -14,10 +14,12 @@
   
   </mat-card-content>
   <mat-card-actions *ngIf="question">
+
     <div class="div-test-title">
-      <button mat-icon-button (click)="playVoice('你好吗')"> <i class="material-icons">volume_up</i></button>
-      {{question.title}}
+      <button mat-icon-button (click)="playVoice('你好吗')"> <i class="material-icons">volume_up</i> </button>
+      <font class="test-title">{{question.title}}</font>
     </div>
+
     <mat-grid-list cols="{{col_num}}" rowHeight="8:4">
       <mat-grid-tile>
         <button mat-raised-button color="{{color_A}}" (click)="selectAnswer('A')">{{question.answerA}}</button>
