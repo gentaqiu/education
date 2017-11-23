@@ -39,7 +39,10 @@ module.exports = {
         return res.status(403).json(response);
       }
       else {
-        var response = {"success":"true"};
+        var response = {
+          "success":"true",
+          "question":question
+        };
         return res.status(200).json(response);
       }
     });    

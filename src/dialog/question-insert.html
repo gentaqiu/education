@@ -1,10 +1,10 @@
-
-    <form class="example-container">       
-        <div>
+    <div>
         <input hidden type="file" #imgFileInput ngFileSelect [options]="options" (change)="onUploadOutput($event)" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" multiple>   
         <button mat-raised-button (click)="insertAudio();imgFileInput.click();">Insert Audio</button>
         <button mat-raised-button (click)="insertPhoto();imgFileInput.click();">Insert Photo</button>         
-        </div>    
+    </div>   
+    <form class="example-container">       
+ 
       <mat-form-field>
         <input [(ngModel)]="title" (mouseover)="changeText($event)" id="title" name="title" matInput placeholder="Title" value="">
       </mat-form-field>

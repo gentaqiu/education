@@ -36,6 +36,9 @@ export class QuestionComponent {
   ngOnDestroy() {
     this.sub.unsubscribe();
   }  
+  editQuestion(id:string) {
+
+  }
   deleteQuestion(id:string) {
     this.questionService.deleteQuestion(id).subscribe(    
         suc => {
@@ -64,6 +67,7 @@ export class QuestionComponent {
       this.questionService.createQuestion(this.course_id,result.title,result.answerA,result.answerB,result.answerC,result.answerD,result.correctAnswer).subscribe(    
         suc => {
             console.log(suc);
+            this.questions.push(suc.question);
         },
         err => {
             console.log(err);
