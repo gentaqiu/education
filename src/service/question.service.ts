@@ -18,4 +18,8 @@ export class QuestionService {
     return this.http.post('/api/question/list', {course_id: course_id})
       .map(res => res.json());
   }
+  deleteQuestion(id:string) {
+    return this.http.post('/api/question/delete', {id: id})
+      .map(res => res.json());  
+  }
 }

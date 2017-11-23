@@ -46,20 +46,23 @@ module.exports = {
   },
   delete: function(req,res) {
     body = req.body;
-    var courseName = body.courseName;
-    console.log('courseName in server delete method='+courseName);
-    //var Model = new CourseModel();
-    CourseModel.findOneAndRemove({ name: courseName }, function(err, todo) {
+    var id = body.id;
+    QuestionModel.findOneAndRemove({ _id: id }, function(err, todo) {
         if (!err) {
-                console.log('remove successfully');
+            console.log('remove successfully');
+            var response = {
+              "success":true
+            };    
+            return res.status(200).json(response);                  
         }
         else {
-                console.log('remove failed');
+            console.log('remove failed');
+            var response = {
+              "success":false
+            };    
+            return res.status(400).json(response);              
         }
     });   
-    var response = {
-      "success":true
-    };    
-    return res.status(200).json(response);     
+   
   }
 }

@@ -15,17 +15,42 @@ export class QuestionComponent {
   course_id: string;
   private sub: any;
 
+  questions: any[];
+
   constructor(private route: ActivatedRoute,private router: Router,public dialog: MatDialog,private questionService: QuestionService) {}
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
        this.course_id = params['course_id'];
+       this.questionService.getQuestions(this.course_id).subscribe(    
+            suc => {
+                this.questions = suc.questions;
+            },
+            err => {
+                console.log(err);
+            }
+       );  
     });
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
   }  
+  deleteQuestion(id:string) {
+    this.questionService.deleteQuestion(id).subscribe(    
+        suc => {
+            console.log(suc);
+            for(var i = this.questions.length - 1; i >= 0; i--) {
+                if(this.questions[i]._id === id) {
+                   this.questions.splice(i, 1);
+                }
+            }            
+        },
+        err => {
+            console.log(err);
+        }
+      );   
+  }
   createQuestion() {
     console.log('create question for ' + this.course_id);
     let questionDialogRef = this.dialog.open(QuestionInsertDialog,{

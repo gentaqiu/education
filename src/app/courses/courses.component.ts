@@ -6,7 +6,6 @@ import { VoiceService } from '../../service/voice.service';
 import { CourseService } from '../../service/course.service';
 import { QuestionService } from '../../service/question.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-courses',
@@ -37,7 +36,7 @@ export class CoursesComponent implements OnInit {
   questions = [];
   question: any;
 
-  constructor(private route: ActivatedRoute, public snackBar: MatSnackBar,private questionService: QuestionService,private voiceService: VoiceService,private courseService:CourseService,private router: Router,private sanitizer: DomSanitizer) { }
+  constructor(private route: ActivatedRoute, public snackBar: MatSnackBar,private questionService: QuestionService,private voiceService: VoiceService,private courseService:CourseService,private router: Router) { }
 
     setColNum() {
         this.col_num = 4;
@@ -61,7 +60,6 @@ export class CoursesComponent implements OnInit {
               this.questions = suc.questions;
               this.question_num = this.questions.length;
               this.question = this.questions[this.index];
-              this.question.title = this.sanitizer.bypassSecurityTrustHtml(this.question.title);
           },
           err => {
               console.log(err);
@@ -111,7 +109,6 @@ export class CoursesComponent implements OnInit {
       if(this.index < this.question_num - 1) {
         this.index ++;
         this.question = this.questions[this.index];
-        this.question.title = this.sanitizer.bypassSecurityTrustHtml(this.question.title);
       }
     }
     else {

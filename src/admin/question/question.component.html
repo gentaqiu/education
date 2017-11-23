@@ -1,4 +1,20 @@
-<div>
-	list of question.abc
-	<button mat-raised-button color="primary" (click)="createQuestion()">Create</button>
-</div>
+<h3 mat-subheader>Questions<button mat-raised-button color="primary" (click)="createQuestion()">Create</button></h3>
+<mat-grid-list cols="6" rowHeight="100px" *ngFor="let question of questions">
+  <mat-grid-tile
+      [colspan]="5"
+      [rowspan]="1">
+    {{question.title}}
+  </mat-grid-tile>
+  <mat-grid-tile
+      [colspan]="1"
+      [rowspan]="1">
+      <div class="button-row">
+    	<button mat-icon-button (click)="editQuestion(question._id)">
+    		<mat-icon aria-label="Edit">mode edit</mat-icon>		
+    	</button> 
+    	<button mat-icon-button > 
+    		<mat-icon aria-label="Delete" (click)="deleteQuestion(question._id)">delete</mat-icon>
+    	</button>
+      </div>
+  </mat-grid-tile>  
+</mat-grid-list>

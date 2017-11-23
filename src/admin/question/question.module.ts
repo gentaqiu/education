@@ -9,6 +9,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import { QuestionInsertDialog } from '../../dialog/question-insert.dialog';
 import { QuestionService } from '../../service/question.service';
+import {MatListModule} from '@angular/material/list';
+import {MatIconModule} from '@angular/material/icon';
 
 export const routes = [
     { path: '', component: QuestionComponent, pathMatch: 'full' },
@@ -27,6 +29,8 @@ export const routes = [
     MatCardModule,
     MatDialogModule,
     MatSelectModule,
+    MatListModule,
+    MatIconModule,
     NgUploaderModule
   ],
   entryComponents: [QuestionInsertDialog],

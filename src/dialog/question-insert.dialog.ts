@@ -97,7 +97,7 @@ export class QuestionInsertDialog {
       var response = output.file.response;
       var filepath = response.filepath;
       if(this.file_type == 'A') {
-        this[this.currentInputID] += '<button class="mat-icon-button" mat-icon-button (click)="playVoice(\'' + filepath + '\')"> <i class="material-icons">volume_up</i> </button>'; 
+        this[this.currentInputID] += '|||' + filepath ; 
       }
 
     } else if (output.type === 'removed') {

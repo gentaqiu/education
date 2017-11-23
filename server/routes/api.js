@@ -30,4 +30,5 @@ router.post('/course/delete', courseCtrl.delete);
 router.post('/file/upload', fileCtrl.upload);
 router.post('/question/create', questionCtrl.create);
 router.post('/question/list', questionCtrl.list);
+router.post('/question/delete', questionCtrl.delete);
 module.exports = router;
