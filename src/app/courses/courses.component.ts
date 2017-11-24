@@ -35,14 +35,15 @@ export class CoursesComponent implements OnInit {
   soundID = "Thunder";
   questions = [];
   question: any;
+  checkOrContinue = '';
 
   constructor(private route: ActivatedRoute, public snackBar: MatSnackBar,private questionService: QuestionService,private voiceService: VoiceService,private courseService:CourseService,private router: Router) { }
 
     setColNum() {
-        this.col_num = 4;
+        this.col_num = 2;
         var width = window.innerWidth;
         if(width <= 600) {
-            this.col_num = 2;
+            this.col_num = 1;
         }  
     }
     onResize(event){
@@ -51,6 +52,7 @@ export class CoursesComponent implements OnInit {
 
   ngOnInit() {
     this.index = 0;
+    this.checkOrContinue = 'Check';
     this.setColNum();  
     this.sub = this.route.params.subscribe(params => {
        this.course_id = params['course_id'];
@@ -58,6 +60,9 @@ export class CoursesComponent implements OnInit {
           suc => {
               //console.log(suc);
               this.questions = suc.questions;
+              for (var i = 0; i < this.questions.length; i++) {
+                this.questions[i].title = this.questions[i].title.split("|||");
+              }
               this.question_num = this.questions.length;
               this.question = this.questions[this.index];
           },
@@ -102,38 +107,42 @@ export class CoursesComponent implements OnInit {
   }
 
   checkAnswer() {
-    if(this.selection == this.question.correctAnswer) {
-      this.snackBar.openFromComponent(CorrectAnswerComponent, {
-        duration: 50000,
-      });     
+    if(this.checkOrContinue == 'Check') {
+      if(this.selection == this.question.correctAnswer) {
+        this.snackBar.openFromComponent(CorrectAnswerComponent, {
+          duration: 2000,
+        });   
+        this.checkOrContinue = 'Continue';
+        this.playVoice('/assets/audio/right_answer.mp3');
+      }
+      else {
+        this.snackBar.openFromComponent(WrongAnswerComponent, {
+          duration: 2000,
+        });  
+        this.playVoice('/assets/audio/wrong_answer.mp3');    
+      }    
+    }
+    else if(this.checkOrContinue == 'Continue') {
       if(this.index < this.question_num - 1) {
         this.index ++;
         this.question = this.questions[this.index];
-      }
-    }
-    else {
-      this.snackBar.openFromComponent(WrongAnswerComponent, {
-        duration: 1500,
-      });      
+      }   
+      this.checkOrContinue = 'Check';
+      this.color_A = "";
+      this.color_B = "";
+      this.color_C = "";
+      this.color_D = "";  
+      this.check_disable = true;         
     }
   }
-  playVoice(text:string) {
-    console.log("play me");
-    
 
-    this.voiceService.getVoiceFilePath(text).subscribe(    
-        suc => {
-          console.log(suc);
-          var path = suc.path;
-          console.log("path="+path);
-          var audio = new Audio();
-          audio.src = path;
-          audio.load();
-          audio.play();
-        },
-        err => {
-            console.log(err);
-        }
-    );
+
+  playVoice(path:string) {
+      console.log("play me,"+path);
+      var audio = new Audio();
+      audio.src = path;
+      audio.load();
+      audio.play();    
+
   }
 }

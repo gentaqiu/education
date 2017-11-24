@@ -4,7 +4,7 @@
 	display: inline;
 }
 .test-title {
-	font-size: 200%;
+	font-size: 120%;
 }
 .div-test-title {
 	margin-left: 20px;
@@ -17,4 +17,12 @@
   margin-bottom:20px;
   margin-right:20px;
   text-align:center
+}
+.inline_p {
+	display: inline;
+}
+.answer_button {
+	width: 80%;
+	height: 50px;
+	display: inline-block;
 }
