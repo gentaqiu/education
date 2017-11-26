@@ -9,9 +9,10 @@
 
   <mat-grid-tile *ngFor="let course of courses; let i = index">
     <mat-card class="example-card" >
-
-      <img mat-card-image src="{{course.image}}" alt="{{course.name}}">
-      <div>
+      <div class="button_bottom">
+        <img mat-card-image src="{{course.image}}" alt="{{course.name}}">
+      </div>
+      <div class="button_bottom">
         <button mat-raised-button (click)="listQuestions(course._id)">{{course.name}}</button>
 
         <button mat-raised-button (click)="deleteCourse(course._id)">Delete</button>

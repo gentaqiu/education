@@ -13,6 +13,7 @@ import { QuestionService } from '../../service/question.service';
 })
 export class QuestionComponent {
   course_id: string;
+  question_id: string;
   private sub: any;
 
   questions: any[];
@@ -36,8 +37,44 @@ export class QuestionComponent {
   ngOnDestroy() {
     this.sub.unsubscribe();
   }  
-  editQuestion(id:string) {
+  editQuestion(question_id:string,title:string,answerA:string,answerB:string,answerC:string,answerD:string,correctAnswer:string) {
+    console.log('edit question for ' + this.course_id);
+    this.question_id = question_id;
+    let questionDialogRef = this.dialog.open(QuestionInsertDialog,{
+      height: '500px',
+      width: '600px',
+      data: {    
+        title: title,  
+        answerA: answerA,
+        answerB: answerB,
+        answerC: answerC,
+        answerD: answerD,
+        correctAnswer: correctAnswer
+      }       
+    });
+    questionDialogRef.afterClosed().subscribe(result => {
+      console.log("Dialog result: "); // 
+      console.log(result);
 
+
+      this.questionService.createQuestion(this.question_id,this.course_id,result.title,result.answerA,result.answerB,result.answerC,result.answerD,result.correctAnswer).subscribe(    
+        suc => {
+            console.log(suc);
+            console.log('after successfully edit question');
+            for(var i = this.questions.length - 1; i >= 0; i--) {
+                if(this.questions[i]._id == this.question_id) {
+                  console.log('find it');
+                  this.questions[i] = suc.question;
+                  break;
+                }
+            }            
+            this.question_id = '';            
+        },
+        err => {
+            console.log(err);
+        }
+      );       
+    }); 
   }
   deleteQuestion(id:string) {
     this.questionService.deleteQuestion(id).subscribe(    
@@ -59,12 +96,19 @@ export class QuestionComponent {
     let questionDialogRef = this.dialog.open(QuestionInsertDialog,{
       height: '500px',
       width: '600px',
+      data: {      
+        answerA: '',
+        answerB: '',
+        answerC: '',
+        answerD: '',
+        correctAnswer: ''
+      }       
     });
     questionDialogRef.afterClosed().subscribe(result => {
       console.log("Dialog result: "); // 
       console.log(result);
 
-      this.questionService.createQuestion(this.course_id,result.title,result.answerA,result.answerB,result.answerC,result.answerD,result.correctAnswer).subscribe(    
+      this.questionService.createQuestion('',this.course_id,result.title,result.answerA,result.answerB,result.answerC,result.answerD,result.correctAnswer).subscribe(    
         suc => {
             console.log(suc);
             this.questions.push(suc.question);

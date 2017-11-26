@@ -21,6 +21,7 @@ module.exports = {
   },
   create: function(req,res) {
     body = req.body;
+    var question_id = body.question_id;
     var course_id = body.course_id;
     var title = body.title;
     var answerA = body.answerA;
@@ -30,22 +31,34 @@ module.exports = {
     var correctAnswer = body.correctAnswer;
 
     var questionmodel = { course_id: course_id,title:title,answerA:answerA,answerB:answerB,answerC:answerC,answerD:answerD,correctAnswer:correctAnswer };
-
-    var question = new QuestionModel(questionmodel);
-    question.save(function (err, question) {
-      if (err)  {
-        console.error(err);
-        var response = {"success":"false"};
-        return res.status(403).json(response);
-      }
-      else {
-        var response = {
-          "success":"true",
-          "question":question
-        };
-        return res.status(200).json(response);
-      }
-    });    
+    if(question_id != '') {
+        QuestionModel.findByIdAndUpdate(question_id, { $set: questionmodel}, { new: true }, function (err, question) {
+          if (err) return handleError(err);
+          var response = {
+            "success":true,
+            "question":question
+          };    
+          return res.status(200).json(response);
+        });      
+    }
+    else {
+        var question = new QuestionModel(questionmodel);
+        question.save(function (err, question) {
+          if (err)  {
+            console.error(err);
+            var response = {"success":false};
+            return res.status(403).json(response);
+          }
+          else {
+            var response = {
+              "success":true,
+              "question":question
+            };
+            return res.status(200).json(response);
+          }
+        });       
+    }
+   
   },
   delete: function(req,res) {
     body = req.body;

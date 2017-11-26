@@ -14,10 +14,8 @@ export class QuestionInsertDialog {
   courseName: string;
   courses = [];
   uploadInput: EventEmitter<UploadInput>;
-  file_type:string;
   dragOver: boolean;
   alert_message:string;
-  course_id:string;
   title:string;
   answerA:string;
   answerB:string;
@@ -31,15 +29,17 @@ export class QuestionInsertDialog {
     @Inject(MAT_DIALOG_DATA) public data: any) { 
       this.alert_message = "";
     this.files = []; // local uploading files array
-    this.uploadInput = new EventEmitter<UploadInput>(); // input events, we use this to emit data to ngx-uploader 
-    this.course_id = ""; 
-    this.title = ""; 
-    this.answerA = "";
-    this.answerB = "";
-    this.answerC = "";
-    this.answerD = "";
+    this.uploadInput = new EventEmitter<UploadInput>(); 
+
+    this.title = data.title; 
+    this.answerA = data.answerA;
+    this.answerB = data.answerB;
+    this.answerC = data.answerC;
+    this.answerD = data.answerD;
+    this.correctAnswer = data.correctAnswer; 
+    
     this.currentInputID = "";
-    this.correctAnswer = "";   
+      
   }
 
   
@@ -55,28 +55,10 @@ export class QuestionInsertDialog {
     console.log('cancel me');
     this.dialogRef.close();
   }
-  insertAudio(): void {
-    this.file_type = 'A';
-  }
-  insertPhoto(): void {
-    this.file_type = 'P';
-  }
 
   changeText(event): void {
     var id = event.target.id;
     this.currentInputID = id;
-  }
-  startUpload(): void {
-  /*
-    const event: UploadInput = {
-      type: 'uploadAll',
-      url: '/api/file/upload',
-      method: 'POST',
-      data: { courseName: this.courseName }
-    };
- 
-    this.uploadInput.emit(event);
-  */
   }
 
   onUploadOutput(output: UploadOutput): void {
@@ -96,9 +78,7 @@ export class QuestionInsertDialog {
     } else if(output.type === 'done' && typeof output.file !== 'undefined') {
       var response = output.file.response;
       var filepath = response.filepath;
-      if(this.file_type == 'A') {
-        this[this.currentInputID] += '|||' + filepath ; 
-      }
+      this[this.currentInputID] += '|||' + filepath ; 
 
     } else if (output.type === 'removed') {
       // remove file from array when removed
