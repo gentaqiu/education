@@ -10,9 +10,47 @@ import { UploadOutput, UploadInput, UploadFile, humanizeBytes, UploaderOptions }
   templateUrl: 'course-insert.dialog.html'
 })
 export class CourseInsertDialog {
+  uploadInput: EventEmitter<UploadInput>;
+  courseName: string;
+  courseImage: string;
   constructor(
     public dialogRef: MatDialogRef<CourseInsertDialog>,
     @Inject(MAT_DIALOG_DATA) public data: any) { 
+    if(data.courseName) {
+    	this.courseName = data.courseName;
+    }
+    if(data.courseImage) {
+    	this.courseImage = data.courseImage;
+    }
+    else {
+    	this.courseImage = "/assets/uploads/default.jpg";
+    }
+    
+    this.uploadInput = new EventEmitter<UploadInput>();
+  }
+  onCancelClick(): void {
+    console.log('cancel me');
+    this.dialogRef.close();
+  } 
 
+  onConfirmClick(): void {
+    var course = {courseName:this.courseName,courseImage:this.courseImage};
+    this.dialogRef.close(course);
+  }
+
+  onUploadOutput(output: UploadOutput): void {
+    if (output.type === 'allAddedToQueue') { 
+       const event: UploadInput = {
+         type: 'uploadAll',
+         url: '/api/file/upload',
+         method: 'POST',
+         data: {}
+       };
+       this.uploadInput.emit(event);
+    } 
+    else if(output.type === 'done' && typeof output.file !== 'undefined') {
+      var response = output.file.response;
+      this.courseImage = response.filepath;
+    }  
   }
 }

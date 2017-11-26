@@ -1,24 +1,4 @@
-<!--
-<div class="drop-container" ngFileDrop [options]="options" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" [ngClass]="{ 'is-drop-over': dragOver }">
-  <h1>Drag & Drop</h1>
-</div>
---> 
-
 <div class="course-form-container">
-  <div>
-    <mat-form-field class="example-full-width">
-      <label class="upload-button">
-        <input matInput placeholder="Course Name" [(ngModel)]="courseName">
-      </label>
-    </mat-form-field>
-  </div>
-  <div class="form-row">
-    <button mat-raised-button color="primary" md-button (click)="imgFileInput.click()">Add a photo</button>
-    
-      <input hidden type="file" #imgFileInput ngFileSelect [options]="options" (change)="onUploadOutput($event)" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" multiple>	
-      
-    
-  </div>
   <div class="form-row">
   	<button mat-raised-button color="primary" (click)="createUpdateCourse()">{{createOrUpdate}}</button>
   </div>  
@@ -36,7 +16,7 @@
 
         <button mat-raised-button (click)="deleteCourse(course._id)">Delete</button>
 
-        <button mat-raised-button (click)="editCourse(course._id)">Edit</button>
+        <button mat-raised-button (click)="editCourse(course._id,course.name,course.image)">Edit</button>
     </div>  
     </mat-card>
   </mat-grid-tile>

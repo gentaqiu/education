@@ -18,23 +18,15 @@ module.exports = {
 
   },
   createUpdate: function(req,res) {
-    var form = new formidable.IncomingForm();
+      body = req.body;    
+      var courseName = body.courseName;
+      var course_id = body.course_id;
+      var courseImage = body.courseImage;
 
-    form.parse(req, function (err, fields, files) {
-
-      var courseName = fields.courseName;
-      var course_id = fileds.course_id;
-      var oldpath = files.file.path;
-      var newpath = __dirname + '/../../dist/assets/uploads/' + files.file.name;
-
-      var filepath = 'assets/uploads/' + files.file.name;
-
-      var coursemodel = { name: courseName,image:filepath };
-
-      var course = new CourseModel(coursemodel);
+      var coursemodel = { name: courseName,image:courseImage };
 
       if(course_id != '') {
-        CourseModel.findByIdAndUpdate(course_id, { $set: { name: courseName }}, { new: true }, function (err, course) {
+        CourseModel.findByIdAndUpdate(course_id, { $set: coursemodel}, { new: true }, function (err, course) {
           if (err) return handleError(err);
           var response = {
             "success":true,
@@ -43,30 +35,23 @@ module.exports = {
           return res.status(200).json(response);
         });
       }
-      var srcpath = __dirname + '/../../src/assets/uploads/' + files.file.name;
-
-      fs.createReadStream(oldpath).pipe(fs.createWriteStream(srcpath));
-   
-      fs.renameSync(oldpath, newpath, function (err) {
-        if (err) throw err;
-
-      });      
-      course.save(function (err, course) {
-        if (err)  {
-        }
-        else {
-        }
-      });
-      
-      var response = {
-        "success":true,
-        "course":course
-      };    
-      return res.status(200).json(response);
-
-    });
-    
-
+      else {
+        var course = new CourseModel(coursemodel);
+        course.save(function (err, course) {
+          if (err)  {
+            console.error(err);
+            var response = {"success":false};
+            return res.status(403).json(response);
+          }
+          else {
+            var response = {
+              "success":true,
+              "course":course
+            };
+            return res.status(200).json(response);
+          }
+        });         
+      }
     
   },
   delete: function(req,res) {

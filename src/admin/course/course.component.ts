@@ -45,55 +45,30 @@ export class CourseComponent {
     this.router.navigate(['/admin/question',courseName]);
   }
 
-  onUploadOutput(output: UploadOutput): void {
-    if (output.type === 'allAddedToQueue') { // when all files added in queue
-      // uncomment this if you want to auto upload files when added
-      // const event: UploadInput = {
-      //   type: 'uploadAll',
-      //   url: '/upload',
-      //   method: 'POST',
-      //   data: { foo: 'bar' }
-      // };
-      // this.uploadInput.emit(event);
-    } else if (output.type === 'addedToQueue'  && typeof output.file !== 'undefined') { // add file to array when added
-      this.files.push(output.file);
-    } else if (output.type === 'uploading' && typeof output.file !== 'undefined') {
 
-    } else if(output.type === 'done' && typeof output.file !== 'undefined') {
-      var response = output.file.response;
-      var course = response.course;
-      this.courses.push(course);
-    } else if (output.type === 'removed') {
-      // remove file from array when removed
-      this.files = this.files.filter((file: UploadFile) => file !== output.file);
-    } else if (output.type === 'dragOver') {
-      this.dragOver = true;
-    } else if (output.type === 'dragOut') {
-      this.dragOver = false;
-    } else if (output.type === 'drop') {
-      this.dragOver = false;
-    }
-  }
  
   createUpdateCourse(): void {
 
     let courseDialogRef = this.dialog.open(CourseInsertDialog,{
       height: '500px',
       width: '600px',
-    });  
-  /*
-    const event: UploadInput = {
-      type: 'uploadAll',
-      url: '/api/course/createUpdate',
-      method: 'POST',
       data: { 
-        course_id: this.course_id,
-        courseName: this.courseName 
-      }
-    };
- 
-    this.uploadInput.emit(event);
-  */
+        courseName: '',
+        courseImage: ''
+      }        
+    });  
+
+    courseDialogRef.afterClosed().subscribe(result => {
+
+      this.courseService.createCourse(this.course_id,result.courseName,result.courseImage).subscribe(    
+        suc => {
+          this.courses.push(suc.course);
+        },
+        err => {
+            console.log(err);
+        }
+      );       
+    });
   }
  
   deleteCourse(course_id:string) {
@@ -116,15 +91,36 @@ export class CourseComponent {
       );     
   }
 
-  editCourse(course_id:string) {
-      for(var i = this.courses.length - 1; i >= 0; i--) {
-          if(this.courses[i]._id == course_id) {
-              this.courseName = this.courses[i].name;
-              this.course_id = course_id;
-              this.createOrUpdate = 'Update';
-              break;
-          }
+  editCourse(course_id:string,courseName:string,courseImage:string) {
+    this.course_id = course_id;
+    let courseDialogRef = this.dialog.open(CourseInsertDialog,{
+      height: '500px',
+      width: '600px',
+      data: { 
+        courseName: courseName,
+        courseImage: courseImage
       }      
+    });  
+    courseDialogRef.afterClosed().subscribe(result => {
+
+      this.courseService.createCourse(this.course_id,result.courseName,result.courseImage).subscribe(    
+        suc => {
+          console.log('after update');
+          console.log(suc.course);
+          for(var i = this.courses.length - 1; i >= 0; i--) {
+              if(this.courses[i]._id == this.course_id) {
+                this.courses[i] = suc.course;
+                break;
+              }
+          }            
+          this.course_id = '';
+
+        },
+        err => {
+            console.log(err);
+        }
+      );       
+    });           
   }
 
   cancelUpload(id: string): void {

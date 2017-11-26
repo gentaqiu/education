@@ -13,6 +13,12 @@ export class CourseService {
       .map(res => res.json());  
   }
 
+  createCourse(course_id: string, courseName: string, courseImage: string) {
+    return this.http.post ('/api/course/createUpdate',
+    {course_id: course_id, courseName: courseName, courseImage: courseImage})
+      .map(res => res.json());
+  }
+
   getCourses() {
   	console.log("getCourses");
     return this.http.get('/api/courses')
