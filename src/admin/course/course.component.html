@@ -20,7 +20,7 @@
     
   </div>
   <div class="form-row">
-  	<button mat-raised-button color="primary" (click)="createCourse()">Create</button>
+  	<button mat-raised-button color="primary" (click)="createUpdateCourse()">{{createOrUpdate}}</button>
   </div>  
 </div>
 
@@ -34,7 +34,9 @@
       <div>
         <button mat-raised-button (click)="listQuestions(course._id)">{{course.name}}</button>
 
-        <button mat-raised-button (click)="deleteCourse(course.name)">Delete</button>
+        <button mat-raised-button (click)="deleteCourse(course._id)">Delete</button>
+
+        <button mat-raised-button (click)="editCourse(course._id)">Edit</button>
     </div>  
     </mat-card>
   </mat-grid-tile>

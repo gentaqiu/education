@@ -25,7 +25,7 @@ router.get('/courses', courseCtrl.getCourses);
 router.post('/users/register', userCtrl.register);
 router.post('/users/login', userCtrl.login);
 router.post('/voice/path', voiceCtrl.path);
-router.post('/course/create', courseCtrl.create);
+router.post('/course/createUpdate', courseCtrl.createUpdate);
 router.post('/course/delete', courseCtrl.delete);
 router.post('/file/upload', fileCtrl.upload);
 router.post('/question/create', questionCtrl.create);

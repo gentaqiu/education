@@ -19,9 +19,8 @@ export class CourseService {
       .map(res => res.json());
   }
 
-  deleteCourse(courseName:string) {
-    console.log("courseName="+courseName);
-    return this.http.post('/api/course/delete',{courseName:courseName})
+  deleteCourse(course_id:string) {
+    return this.http.post('/api/course/delete',{course_id:course_id})
       .map(res => res.json());    
   }
 }

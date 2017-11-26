@@ -17,23 +17,32 @@ module.exports = {
     });
 
   },
-  create: function(req,res) {
+  createUpdate: function(req,res) {
     var form = new formidable.IncomingForm();
 
     form.parse(req, function (err, fields, files) {
 
       var courseName = fields.courseName;
-
+      var course_id = fileds.course_id;
       var oldpath = files.file.path;
       var newpath = __dirname + '/../../dist/assets/uploads/' + files.file.name;
-      console.log('newpath=');
-      console.log(newpath);
+
       var filepath = 'assets/uploads/' + files.file.name;
 
       var coursemodel = { name: courseName,image:filepath };
 
       var course = new CourseModel(coursemodel);
 
+      if(course_id != '') {
+        CourseModel.findByIdAndUpdate(course_id, { $set: { name: courseName }}, { new: true }, function (err, course) {
+          if (err) return handleError(err);
+          var response = {
+            "success":true,
+            "course":course
+          };    
+          return res.status(200).json(response);
+        });
+      }
       var srcpath = __dirname + '/../../src/assets/uploads/' + files.file.name;
 
       fs.createReadStream(oldpath).pipe(fs.createWriteStream(srcpath));
@@ -62,20 +71,22 @@ module.exports = {
   },
   delete: function(req,res) {
     body = req.body;
-    var courseName = body.courseName;
-    console.log('courseName in server delete method='+courseName);
+    var course_id= body.course_id;
     //var Model = new CourseModel();
-    CourseModel.findOneAndRemove({ name: courseName }, function(err, todo) {
+    CourseModel.findOneAndRemove({ _id: course_id }, function(err, todo) {
         if (!err) {
-                console.log('remove successfully');
+          var response = {
+            "success":true
+          };    
+          return res.status(200).json(response);    
         }
         else {
-                console.log('remove failed');
+          var response = {
+            "success":false
+          };    
+          return res.status(200).json(response);    
         }
     });   
-    var response = {
-      "success":true
-    };    
-    return res.status(200).json(response);     
+ 
   }
 }
