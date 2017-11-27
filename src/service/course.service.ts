@@ -13,9 +13,9 @@ export class CourseService {
       .map(res => res.json());  
   }
 
-  createCourse(course_id: string, courseName: string, courseImage: string) {
+  createCourse(course_id: string,sequence:string, courseName: string, courseImage: string) {
     return this.http.post ('/api/course/createUpdate',
-    {course_id: course_id, courseName: courseName, courseImage: courseImage})
+    {course_id: course_id, sequence:sequence,courseName: courseName, courseImage: courseImage})
       .map(res => res.json());
   }
 

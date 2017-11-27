@@ -6,7 +6,7 @@ var formidable = require('formidable');
 module.exports = {
   getCourses : function(req, res) {
     var courseSet = [];
-    CourseModel.find({}, function (err, courses) {
+    CourseModel.find({}).sort('sequence').exec(function (err, courses) {
         courseSet = courses;
         var response = {
           "success":true,
@@ -22,8 +22,8 @@ module.exports = {
       var courseName = body.courseName;
       var course_id = body.course_id;
       var courseImage = body.courseImage;
-
-      var coursemodel = { name: courseName,image:courseImage };
+      var sequence = body.sequence;
+      var coursemodel = { sequence:sequence,name: courseName,image:courseImage };
 
       if(course_id != '') {
         CourseModel.findByIdAndUpdate(course_id, { $set: coursemodel}, { new: true }, function (err, course) {

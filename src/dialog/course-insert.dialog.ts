@@ -13,11 +13,15 @@ export class CourseInsertDialog {
   uploadInput: EventEmitter<UploadInput>;
   courseName: string;
   courseImage: string;
+  sequence: string;
   constructor(
     public dialogRef: MatDialogRef<CourseInsertDialog>,
     @Inject(MAT_DIALOG_DATA) public data: any) { 
     if(data.courseName) {
     	this.courseName = data.courseName;
+    }
+    if(data.sequence) {
+    	this.sequence = data.sequence;
     }
     if(data.courseImage) {
     	this.courseImage = data.courseImage;
@@ -34,7 +38,7 @@ export class CourseInsertDialog {
   } 
 
   onConfirmClick(): void {
-    var course = {courseName:this.courseName,courseImage:this.courseImage};
+    var course = {sequence:this.sequence,courseName:this.courseName,courseImage:this.courseImage};
     this.dialogRef.close(course);
   }
 

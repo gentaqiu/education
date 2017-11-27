@@ -11,6 +11,9 @@
   <mat-form-field>
     <input matInput placeholder="Name" [(ngModel)]="courseName" >
   </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Sequence" [(ngModel)]="sequence" >
+  </mat-form-field>  
   <input hidden type="file" #imgFileInput ngFileSelect [options]="options" (change)="onUploadOutput($event)" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" multiple>     
   <img src="{{courseImage}}" alt="Norway" (click)="imgFileInput.click();">
 </div>

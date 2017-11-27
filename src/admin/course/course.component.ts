@@ -53,6 +53,7 @@ export class CourseComponent {
       height: '500px',
       width: '600px',
       data: { 
+        sequence: '',
         courseName: '',
         courseImage: ''
       }        
@@ -60,7 +61,7 @@ export class CourseComponent {
 
     courseDialogRef.afterClosed().subscribe(result => {
 
-      this.courseService.createCourse(this.course_id,result.courseName,result.courseImage).subscribe(    
+      this.courseService.createCourse(this.course_id,result.sequence,result.courseName,result.courseImage).subscribe(    
         suc => {
           this.courses.push(suc.course);
         },
@@ -91,22 +92,21 @@ export class CourseComponent {
       );     
   }
 
-  editCourse(course_id:string,courseName:string,courseImage:string) {
+  editCourse(course_id:string,sequence:string,courseName:string,courseImage:string) {
     this.course_id = course_id;
     let courseDialogRef = this.dialog.open(CourseInsertDialog,{
       height: '500px',
       width: '600px',
       data: { 
+        sequence: sequence,
         courseName: courseName,
         courseImage: courseImage
       }      
     });  
     courseDialogRef.afterClosed().subscribe(result => {
 
-      this.courseService.createCourse(this.course_id,result.courseName,result.courseImage).subscribe(    
+      this.courseService.createCourse(this.course_id,result.sequence,result.courseName,result.courseImage).subscribe(    
         suc => {
-          console.log('after update');
-          console.log(suc.course);
           for(var i = this.courses.length - 1; i >= 0; i--) {
               if(this.courses[i]._id == this.course_id) {
                 this.courses[i] = suc.course;
@@ -123,15 +123,4 @@ export class CourseComponent {
     });           
   }
 
-  cancelUpload(id: string): void {
-    this.uploadInput.emit({ type: 'cancel', id: id });
-  }
- 
-  removeFile(id: string): void {
-    this.uploadInput.emit({ type: 'remove', id: id });
-  }
- 
-  removeAllFiles(): void {
-    this.uploadInput.emit({ type: 'removeAll' });
-  }
 }
