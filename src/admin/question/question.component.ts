@@ -41,7 +41,7 @@ export class QuestionComponent {
     console.log('edit question for ' + this.course_id);
     this.question_id = question_id;
     let questionDialogRef = this.dialog.open(QuestionInsertDialog,{
-      height: '500px',
+      height: '550px',
       width: '600px',
       data: {    
         title: title,  
@@ -94,7 +94,7 @@ export class QuestionComponent {
   createQuestion() {
     console.log('create question for ' + this.course_id);
     let questionDialogRef = this.dialog.open(QuestionInsertDialog,{
-      height: '500px',
+      height: '550px',
       width: '600px',
       data: {      
         answerA: '',

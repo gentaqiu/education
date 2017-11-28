@@ -59,6 +59,8 @@ export class QuestionInsertDialog {
   changeText(event): void {
     var id = event.target.id;
     this.currentInputID = id;
+    console.log('currentInputID==');
+    console.log(this.currentInputID);
   }
 
   onUploadOutput(output: UploadOutput): void {

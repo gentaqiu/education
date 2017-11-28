@@ -6,21 +6,21 @@
     <form class="example-container">       
  
       <mat-form-field>
-        <input [(ngModel)]="title" (mouseover)="changeText($event)" id="title" name="title" matInput placeholder="Title" value="">
+        <input [(ngModel)]="title" (click)="changeText($event)" id="title" name="title" matInput placeholder="Title" value="">
       </mat-form-field>
       <mat-form-field>
-        <input [(ngModel)]="answerA" (mouseover)="changeText($event)" id="answerA" name="answerA" matInput placeholder="Answer A" value="">
+        <input [(ngModel)]="answerA" (click)="changeText($event)" id="answerA" name="answerA" matInput placeholder="Answer A" value="">
       </mat-form-field>      
       <mat-form-field>
-        <input [(ngModel)]="answerB" (mouseover)="changeText($event)" id="answerB" name="answerB" matInput  placeholder="Answer B" value="">
+        <input [(ngModel)]="answerB" (click)="changeText($event)" id="answerB" name="answerB" matInput  placeholder="Answer B" value="">
       </mat-form-field>
 
       <mat-form-field>
-        <input [(ngModel)]="answerC" (mouseover)="changeText($event)" id="answerC" name="answerC" matInput  placeholder="Answer C" value="">
+        <input [(ngModel)]="answerC" (click)="changeText($event)" id="answerC" name="answerC" matInput  placeholder="Answer C" value="">
       </mat-form-field>
 
       <mat-form-field>
-        <input [(ngModel)]="answerD" (mouseover)="changeText($event)" id="answerD" name="answerD" matInput  placeholder="Answer D" value="">
+        <input [(ngModel)]="answerD" (click)="changeText($event)" id="answerD" name="answerD" matInput  placeholder="Answer D" value="">
       </mat-form-field>
 
       <mat-form-field>
@@ -31,7 +31,7 @@
           <mat-option value="D">D</mat-option>
         </mat-select>
       </mat-form-field>      
-      <div>
+      <div class="button-row">
         <button mat-raised-button (click)="onConfirmClick()">Confirm</button>
         <button mat-raised-button (click)="onCancelClick()">Cancel</button>
       </div> 

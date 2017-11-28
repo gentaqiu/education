@@ -22,8 +22,8 @@ export class CoursesComponent implements OnInit {
   private sub: any;  
   color = 'primary';
   mode = 'determinate';
-  value = 50;
-  bufferValue = 75;
+  value = 0;
+  bufferValue = 0;
   col_num:number = 2;
   color_A = "";
   color_B = "";
@@ -62,6 +62,26 @@ export class CoursesComponent implements OnInit {
               this.questions = suc.questions;
               for (var i = 0; i < this.questions.length; i++) {
                 this.questions[i].title = this.questions[i].title.split("|||");
+                this.questions[i].answerA = this.questions[i].answerA.split("|||");
+                this.questions[i].answerB = this.questions[i].answerB.split("|||");
+                this.questions[i].answerC = this.questions[i].answerC.split("|||");
+                this.questions[i].answerD = this.questions[i].answerD.split("|||");
+                this.questions[i].answerAText = this.questions[i].answerA[0];
+                this.questions[i].answerBText = this.questions[i].answerB[0];
+                this.questions[i].answerCText = this.questions[i].answerC[0];
+                this.questions[i].answerDText = this.questions[i].answerD[0];
+                if(this.questions[i].answerA.length>1) {
+                  this.questions[i].answerASound = this.questions[i].answerA[1];
+                }
+                if(this.questions[i].answerB.length>1) {
+                  this.questions[i].answerBSound = this.questions[i].answerB[1];
+                }  
+                if(this.questions[i].answerC.length>1) {
+                  this.questions[i].answerCSound = this.questions[i].answerC[1];
+                }  
+                if(this.questions[i].answerD.length>1) {
+                  this.questions[i].answerDSound = this.questions[i].answerD[1];
+                }                                            
               }
               this.question_num = this.questions.length;
               this.question = this.questions[this.index];
@@ -82,25 +102,37 @@ export class CoursesComponent implements OnInit {
       this.color_A = "primary";
       this.color_B = "";
       this.color_C = "";
-      this.color_D = "";      
+      this.color_D = "";    
+      if(this.question.answerASound) {
+        this.playVoice(this.question.answerASound);
+      }
     }
     else if(selection == 'B') {
       this.color_A = "";
       this.color_B = "primary";
       this.color_C = "";
-      this.color_D = "";      
+      this.color_D = "";     
+      if(this.question.answerBSound) {
+        this.playVoice(this.question.answerBSound);
+      }       
     }
     else if(selection == 'C') {
       this.color_A = "";
       this.color_B = "";
       this.color_C = "primary";
-      this.color_D = "";      
+      this.color_D = "";   
+      if(this.question.answerCSound) {
+        this.playVoice(this.question.answerCSound);
+      }         
     }
     else if(selection == 'D') {
       this.color_A = '';
       this.color_B = "";
       this.color_C = "";
-      this.color_D = "primary";      
+      this.color_D = "primary";  
+      if(this.question.answerDSound) {
+        this.playVoice(this.question.answerDSound);
+      }          
     }  
     this.check_disable = false;     
     this.color_check = "accent"; 
@@ -114,6 +146,7 @@ export class CoursesComponent implements OnInit {
         });   
         this.checkOrContinue = 'Continue';
         this.playVoice('/assets/audio/right_answer.mp3');
+
       }
       else {
         this.snackBar.openFromComponent(WrongAnswerComponent, {
@@ -123,9 +156,13 @@ export class CoursesComponent implements OnInit {
       }    
     }
     else if(this.checkOrContinue == 'Continue') {
-      if(this.index < this.question_num - 1) {
+      if(this.index <= this.question_num - 1) {
         this.index ++;
-        this.question = this.questions[this.index];
+        this.value = this.index/this.question_num*100;
+        if(this.index <= this.question_num - 1) {
+          this.question = this.questions[this.index];
+        }
+        
       }   
       this.checkOrContinue = 'Check';
       this.color_A = "";

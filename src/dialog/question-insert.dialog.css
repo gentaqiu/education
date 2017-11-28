@@ -11,3 +11,7 @@ p.clear {
     clear: both;
 
 }
+
+.button-row {
+	text-align: center;
+}

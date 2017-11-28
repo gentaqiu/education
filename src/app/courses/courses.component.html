@@ -29,16 +29,16 @@
 
     <mat-grid-list cols="{{col_num}}" rowHeight="22:4">
       <mat-grid-tile>
-        <button class="answer_button" mat-raised-button color="{{color_A}}" (click)="selectAnswer('A')">{{question.answerA}}</button>
+        <button class="answer_button" mat-raised-button color="{{color_A}}" (click)="selectAnswer('A')">{{question.answerAText}}</button>
       </mat-grid-tile>
       <mat-grid-tile>
-        <button class="answer_button" mat-raised-button color="{{color_B}}" (click)="selectAnswer('B')">{{question.answerB}}</button>
+        <button class="answer_button" mat-raised-button color="{{color_B}}" (click)="selectAnswer('B')">{{question.answerBText}}</button>
       </mat-grid-tile>
       <mat-grid-tile>
-        <button class="answer_button" mat-raised-button color="{{color_C}}" (click)="selectAnswer('C')">{{question.answerC}}</button>
+        <button class="answer_button" mat-raised-button color="{{color_C}}" (click)="selectAnswer('C')">{{question.answerCText}}</button>
       </mat-grid-tile>
       <mat-grid-tile>
-        <button class="answer_button" mat-raised-button color="{{color_D}}" (click)="selectAnswer('D')">{{question.answerD}}</button>    
+        <button class="answer_button" mat-raised-button color="{{color_D}}" (click)="selectAnswer('D')">{{question.answerDText}}</button>    
       </mat-grid-tile>  
     </mat-grid-list>
 
