@@ -41,6 +41,7 @@
         <button class="answer_button" mat-raised-button color="{{color_D}}" (click)="selectAnswer('D')">{{question.answerDText}}</button>    
       </mat-grid-tile>  
     </mat-grid-list>
+
     <div *ngIf="question.type == 3" class="center_align">
       <div>
         <mat-form-field>
@@ -53,11 +54,20 @@
         </button>  
       </div> 
     </div>
+
+    <div *ngIf="question.type == 4" class="center_align">
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="Fill in the translation using characters" [(ngModel)]="inputData" value="" class="width_100" (click)="inputWriting()">
+        </mat-form-field>  
+      </div>
+    </div>
+
     <div class="test-check">
       <button mat-raised-button disabled="{{check_disable}}" color="{{color_check}}" (click)="checkAnswer()">{{checkOrContinue}}</button>
     </div>
   </mat-card-actions>
 </mat-card>
-<div *ngIf="finished">
+<div class="center_align" *ngIf="finished">
   Congrat, You've done.
 </div>

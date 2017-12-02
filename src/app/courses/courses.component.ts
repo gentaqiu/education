@@ -18,6 +18,7 @@ import { SpeechRecognitionService } from '../../service/speech-recognition.servi
 })
 export class CoursesComponent implements OnInit {
   finished = false;
+  inputData: string;
   speechData: string;
   course_id: string;
   index:number;
@@ -170,7 +171,9 @@ export class CoursesComponent implements OnInit {
             });
 
   }
-
+  inputWriting() {
+    this.check_disable = false; 
+  }
   checkAnswer() {
     if(this.checkOrContinue == 'Check') {
       var goodAnswer = false;
@@ -191,6 +194,17 @@ export class CoursesComponent implements OnInit {
           //this.speechRecognitionService.DestroySpeechObject();
         }
       }
+
+      else if(this.question.type == 4){
+        var re = /(，|,|\s)+/gi; 
+        var question_inputData = this.inputData.replace(re,'');
+        var correctAnswer = this.question.correctAnswer.replace(re,''); 
+        
+        if(correctAnswer == question_inputData) {
+          goodAnswer = true;
+        }
+      }
+
       if(goodAnswer) {
         this.snackBar.openFromComponent(CorrectAnswerComponent, {
           duration: 2000,

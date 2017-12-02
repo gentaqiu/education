@@ -38,7 +38,10 @@
           <mat-option value="C">C</mat-option>
           <mat-option value="D">D</mat-option>
         </mat-select>
-      </mat-form-field>      
+      </mat-form-field>  
+      <mat-form-field *ngIf="type==4">
+        <input [(ngModel)]="correctAnswer"  id="correctAnswer" name="correctAnswer" matInput  placeholder="Correct Answer" value="">
+      </mat-form-field>    
       <div class="button-row">
         <button mat-raised-button (click)="onConfirmClick()">Confirm</button>
         <button mat-raised-button (click)="onCancelClick()">Cancel</button>
