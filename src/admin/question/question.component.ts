@@ -37,13 +37,13 @@ export class QuestionComponent {
   ngOnDestroy() {
     this.sub.unsubscribe();
   }  
-  editQuestion(question_id:string,title:string,answerA:string,answerB:string,answerC:string,answerD:string,correctAnswer:string) {
-    console.log('edit question for ' + this.course_id);
+  editQuestion(question_id:string,type:number,title:string,answerA:string,answerB:string,answerC:string,answerD:string,correctAnswer:string) {
     this.question_id = question_id;
     let questionDialogRef = this.dialog.open(QuestionInsertDialog,{
       height: '550px',
       width: '600px',
-      data: {    
+      data: {  
+        type:type,  
         title: title,  
         answerA: answerA,
         answerB: answerB,
@@ -53,17 +53,12 @@ export class QuestionComponent {
       }       
     });
     questionDialogRef.afterClosed().subscribe(result => {
-      console.log("Dialog result: "); // 
-      console.log(result);
 
-
-      this.questionService.createQuestion(this.question_id,this.course_id,result.title,result.answerA,result.answerB,result.answerC,result.answerD,result.correctAnswer).subscribe(    
+      result.type = result.type ? result.type : 1;
+      this.questionService.createQuestion(this.question_id,this.course_id,result.type,result.title,result.answerA,result.answerB,result.answerC,result.answerD,result.correctAnswer).subscribe(    
         suc => {
-            console.log(suc);
-            console.log('after successfully edit question');
             for(var i = this.questions.length - 1; i >= 0; i--) {
                 if(this.questions[i]._id == this.question_id) {
-                  console.log('find it');
                   this.questions[i] = suc.question;
                   break;
                 }
@@ -79,7 +74,6 @@ export class QuestionComponent {
   deleteQuestion(id:string) {
     this.questionService.deleteQuestion(id).subscribe(    
         suc => {
-            console.log(suc);
             for(var i = this.questions.length - 1; i >= 0; i--) {
                 if(this.questions[i]._id === id) {
                    this.questions.splice(i, 1);
@@ -96,7 +90,9 @@ export class QuestionComponent {
     let questionDialogRef = this.dialog.open(QuestionInsertDialog,{
       height: '550px',
       width: '600px',
-      data: {      
+      data: {   
+        type: 1,
+        title: '',   
         answerA: '',
         answerB: '',
         answerC: '',
@@ -105,12 +101,9 @@ export class QuestionComponent {
       }       
     });
     questionDialogRef.afterClosed().subscribe(result => {
-      console.log("Dialog result: "); // 
-      console.log(result);
 
-      this.questionService.createQuestion('',this.course_id,result.title,result.answerA,result.answerB,result.answerC,result.answerD,result.correctAnswer).subscribe(    
+      this.questionService.createQuestion('',this.course_id,result.type,result.title,result.answerA,result.answerB,result.answerC,result.answerD,result.correctAnswer).subscribe(    
         suc => {
-            console.log(suc);
             this.questions.push(suc.question);
         },
         err => {

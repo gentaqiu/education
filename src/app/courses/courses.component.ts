@@ -6,6 +6,7 @@ import { VoiceService } from '../../service/voice.service';
 import { CourseService } from '../../service/course.service';
 import { QuestionService } from '../../service/question.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { SpeechRecognitionService } from '../../service/speech-recognition.service';
 
 @Component({
   selector: 'app-courses',
@@ -16,6 +17,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
       }    
 })
 export class CoursesComponent implements OnInit {
+  speechData: string;
   course_id: string;
   index:number;
   question_num:number;
@@ -37,7 +39,7 @@ export class CoursesComponent implements OnInit {
   question: any;
   checkOrContinue = '';
 
-  constructor(private route: ActivatedRoute, public snackBar: MatSnackBar,private questionService: QuestionService,private voiceService: VoiceService,private courseService:CourseService,private router: Router) { }
+  constructor(private route: ActivatedRoute, public snackBar: MatSnackBar,private questionService: QuestionService,private voiceService: VoiceService,private courseService:CourseService,private router: Router,private speechRecognitionService: SpeechRecognitionService) { }
 
     setColNum() {
         this.col_num = 2;
@@ -136,6 +138,33 @@ export class CoursesComponent implements OnInit {
     }  
     this.check_disable = false;     
     this.color_check = "accent"; 
+  }
+
+  recordVoice() {
+    console.log('recordVoice');
+
+        this.speechRecognitionService.record()
+            .subscribe(
+            //listener
+            (value) => {
+                this.speechData = value;
+                console.log(value);
+            },
+            //errror
+            (err) => {
+                console.log(err);
+                if (err.error == "no-speech") {
+                    console.log("--restatring service--");
+                    //this.activateSpeechSearchMovie();
+                }
+            },
+            //completion
+            () => {
+                //this.showSearchButton = true;
+                console.log("--complete--");
+                //this.activateSpeechSearchMovie();
+            });
+
   }
 
   checkAnswer() {

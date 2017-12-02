@@ -9,30 +9,28 @@ function getQuestionModel () {
     course_id: {
       type: String,
       required: true
-    },    
+    }, 
+    type: {
+      type: Number
+    },   
     title: {
       type: String,
       required: true
     },
     answerA: {
-      type: String,
-      required: true
+      type: String
     },
     answerB: {
-      type: String,
-      required: true
+      type: String
     },  
     answerC: {
-      type: String,
-      required: true
+      type: String
     }, 
     answerD: {
-      type: String,
-      required: true
+      type: String
     }, 
     correctAnswer: {
-      type: String,
-      required: true
+      type: String
     }            
   }, {
     collection: 'question'

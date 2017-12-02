@@ -41,7 +41,12 @@
         <button class="answer_button" mat-raised-button color="{{color_D}}" (click)="selectAnswer('D')">{{question.answerDText}}</button>    
       </mat-grid-tile>  
     </mat-grid-list>
-
+    <div>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="" [(ngModel)]="speechData" disabled value="">
+  </mat-form-field>   
+  <button mat-icon-button (click)="recordVoice()"> <i class="material-icons">settings voice</i> </button>   
+    </div>
     <div class="test-check">
       <button mat-raised-button disabled="{{check_disable}}" color="{{color_check}}" (click)="checkAnswer()">{{checkOrContinue}}</button>
     </div>

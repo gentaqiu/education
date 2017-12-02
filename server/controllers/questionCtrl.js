@@ -23,6 +23,7 @@ module.exports = {
     body = req.body;
     var question_id = body.question_id;
     var course_id = body.course_id;
+    var type = body.type;
     var title = body.title;
     var answerA = body.answerA;
     var answerB = body.answerB;
@@ -30,7 +31,7 @@ module.exports = {
     var answerD = body.answerD;
     var correctAnswer = body.correctAnswer;
 
-    var questionmodel = { course_id: course_id,title:title,answerA:answerA,answerB:answerB,answerC:answerC,answerD:answerD,correctAnswer:correctAnswer };
+    var questionmodel = { course_id: course_id,type:type,title:title,answerA:answerA,answerB:answerB,answerC:answerC,answerD:answerD,correctAnswer:correctAnswer };
     if(question_id != '') {
         QuestionModel.findByIdAndUpdate(question_id, { $set: questionmodel}, { new: true }, function (err, question) {
           if (err) return handleError(err);

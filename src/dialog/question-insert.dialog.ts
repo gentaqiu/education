@@ -16,6 +16,7 @@ export class QuestionInsertDialog {
   uploadInput: EventEmitter<UploadInput>;
   dragOver: boolean;
   alert_message:string;
+  type:string;
   title:string;
   answerA:string;
   answerB:string;
@@ -31,6 +32,7 @@ export class QuestionInsertDialog {
     this.files = []; // local uploading files array
     this.uploadInput = new EventEmitter<UploadInput>(); 
 
+    this.type = data.type?data.type.toString():'1';
     this.title = data.title; 
     this.answerA = data.answerA;
     this.answerB = data.answerB;
@@ -44,28 +46,23 @@ export class QuestionInsertDialog {
 
   
   onConfirmClick(): void {
-
-    console.log("confirm for " + this.title);
-    var question = {title:this.title,answerA:this.answerA,answerB:this.answerB,answerC:this.answerC,answerD:this.answerD,correctAnswer:this.correctAnswer};
+    var question = {type:this.type,title:this.title,answerA:this.answerA,answerB:this.answerB,answerC:this.answerC,answerD:this.answerD,correctAnswer:this.correctAnswer};
     this.dialogRef.close(question);
 
   }
 
   onCancelClick(): void {
-    console.log('cancel me');
     this.dialogRef.close();
   }
 
   changeText(event): void {
     var id = event.target.id;
     this.currentInputID = id;
-    console.log('currentInputID==');
-    console.log(this.currentInputID);
   }
 
   onUploadOutput(output: UploadOutput): void {
-    if (output.type === 'allAddedToQueue') { // when all files added in queue
-      // uncomment this if you want to auto upload files when added
+    if (output.type === 'allAddedToQueue') { 
+
        const event: UploadInput = {
          type: 'uploadAll',
          url: '/api/file/upload',
@@ -73,24 +70,11 @@ export class QuestionInsertDialog {
          data: { courseName: this.courseName }
        };
        this.uploadInput.emit(event);
-    } else if (output.type === 'addedToQueue'  && typeof output.file !== 'undefined') { // add file to array when added
-      //this.files.push(output.file);
-    } else if (output.type === 'uploading' && typeof output.file !== 'undefined') {
-
-    } else if(output.type === 'done' && typeof output.file !== 'undefined') {
+    }
+    else if(output.type === 'done' && typeof output.file !== 'undefined') {
       var response = output.file.response;
       var filepath = response.filepath;
       this[this.currentInputID] += '|||' + filepath ; 
-
-    } else if (output.type === 'removed') {
-      // remove file from array when removed
-      this.files = this.files.filter((file: UploadFile) => file !== output.file);
-    } else if (output.type === 'dragOver') {
-      this.dragOver = true;
-    } else if (output.type === 'dragOut') {
-      this.dragOver = false;
-    } else if (output.type === 'drop') {
-      this.dragOver = false;
-    }
+    } 
   }  
 }

@@ -10,7 +10,10 @@ import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 import { QuestionService } from '../../service/question.service';
+import { SpeechRecognitionService } from '../../service/speech-recognition.service';
 
 export const routes = [
     { path: '', component: CoursesComponent, pathMatch: 'full' },
@@ -25,6 +28,8 @@ export const routes = [
     MatGridListModule,
     MatButtonModule,
     MatSnackBarModule,
+    MatFormFieldModule,
+    MatInputModule,
     RouterModule.forChild(routes),
   ],
   declarations: [
@@ -34,7 +39,7 @@ export const routes = [
 
   ],
   entryComponents: [CorrectAnswerComponent,WrongAnswerComponent],
-  providers: [QuestionService],
+  providers: [QuestionService,SpeechRecognitionService],
 })
 export  class CoursesModule {
 }
