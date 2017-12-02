@@ -17,6 +17,7 @@ import { SpeechRecognitionService } from '../../service/speech-recognition.servi
       }    
 })
 export class CoursesComponent implements OnInit {
+  finished = false;
   speechData: string;
   course_id: string;
   index:number;
@@ -54,6 +55,7 @@ export class CoursesComponent implements OnInit {
 
   ngOnInit() {
     this.index = 0;
+    this.finished = false;
     this.checkOrContinue = 'Check';
     this.setColNum();  
     this.sub = this.route.params.subscribe(params => {
@@ -147,8 +149,10 @@ export class CoursesComponent implements OnInit {
             .subscribe(
             //listener
             (value) => {
-                this.speechData = value;
                 console.log(value);
+                this.speechData = value;
+                this.check_disable = false;   
+                
             },
             //errror
             (err) => {
@@ -169,7 +173,25 @@ export class CoursesComponent implements OnInit {
 
   checkAnswer() {
     if(this.checkOrContinue == 'Check') {
-      if(this.selection == this.question.correctAnswer) {
+      var goodAnswer = false;
+      if(this.question.type == 1) {
+        if(this.selection == this.question.correctAnswer) {
+          goodAnswer = true;
+        }
+      }
+      else if(this.question.type == 3){
+        var re = /(，|,|\s)+/gi; 
+        var question_speechData = this.speechData.replace(re,'');
+        var question_title = this.question.title[0].replace(re,''); 
+        
+        console.log('question_speechData='+question_speechData);
+        console.log('question_title='+question_title);
+        if(question_title == question_speechData) {
+          goodAnswer = true;
+          //this.speechRecognitionService.DestroySpeechObject();
+        }
+      }
+      if(goodAnswer) {
         this.snackBar.openFromComponent(CorrectAnswerComponent, {
           duration: 2000,
         });   
@@ -191,7 +213,9 @@ export class CoursesComponent implements OnInit {
         if(this.index <= this.question_num - 1) {
           this.question = this.questions[this.index];
         }
-        
+        else {
+          this.finished = true;
+        }
       }   
       this.checkOrContinue = 'Check';
       this.color_A = "";

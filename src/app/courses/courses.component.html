@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card *ngIf="!finished">
   <mat-card-content>
     <h2 class="example-h2"></h2>
     
@@ -27,7 +27,7 @@
       
     </div>
 
-    <mat-grid-list cols="{{col_num}}" rowHeight="22:4">
+    <mat-grid-list cols="{{col_num}}" rowHeight="22:4" *ngIf="question.type == 1">
       <mat-grid-tile>
         <button class="answer_button" mat-raised-button color="{{color_A}}" (click)="selectAnswer('A')">{{question.answerAText}}</button>
       </mat-grid-tile>
@@ -41,14 +41,23 @@
         <button class="answer_button" mat-raised-button color="{{color_D}}" (click)="selectAnswer('D')">{{question.answerDText}}</button>    
       </mat-grid-tile>  
     </mat-grid-list>
-    <div>
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="" [(ngModel)]="speechData" disabled value="">
-  </mat-form-field>   
-  <button mat-icon-button (click)="recordVoice()"> <i class="material-icons">settings voice</i> </button>   
+    <div *ngIf="question.type == 3" class="center_align">
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="" [(ngModel)]="speechData" disabled value="" class="width_100">
+        </mat-form-field>  
+      </div>
+      <div> 
+        <button mat-icon-button (click)="recordVoice()"> 
+          <i class="material-icons ">keyboard_voice</i>
+        </button>  
+      </div> 
     </div>
     <div class="test-check">
       <button mat-raised-button disabled="{{check_disable}}" color="{{color_check}}" (click)="checkAnswer()">{{checkOrContinue}}</button>
     </div>
   </mat-card-actions>
 </mat-card>
+<div *ngIf="finished">
+  Congrat, You've done.
+</div>

@@ -26,3 +26,10 @@
 	height: 50px;
 	display: inline-block;
 }
+.width_100 {
+	width: 100%;
+}
+.center_align {
+	text-align: center;
+	align-content: center;
+}
