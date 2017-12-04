@@ -10,6 +10,8 @@
           <mat-option value="2">Listening</mat-option>
           <mat-option value="3">Speaking</mat-option>
           <mat-option value="4">Writing</mat-option>
+          <mat-option value="4">Writing</mat-option>
+          <mat-option value="5">Sentence</mat-option>
         </mat-select>
       </mat-form-field>     
 
@@ -39,7 +41,10 @@
           <mat-option value="D">D</mat-option>
         </mat-select>
       </mat-form-field>  
-      <mat-form-field *ngIf="type==4">
+      <mat-form-field *ngIf="type==5">
+        <input [(ngModel)]="answerA"  id="answerA" name="answerA" matInput  placeholder="Multiple Choice" value="">
+      </mat-form-field>        
+      <mat-form-field *ngIf="type==4 || type ==5">
         <input [(ngModel)]="correctAnswer"  id="correctAnswer" name="correctAnswer" matInput  placeholder="Correct Answer" value="">
       </mat-form-field>    
       <div class="button-row">

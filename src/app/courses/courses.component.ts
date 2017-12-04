@@ -18,8 +18,7 @@ import { SpeechRecognitionService } from '../../service/speech-recognition.servi
 })
 export class CoursesComponent implements OnInit {
   finished = false;
-  inputData: string;
-  speechData: string;
+  inputAnswer: string;
   course_id: string;
   index:number;
   question_num:number;
@@ -151,7 +150,7 @@ export class CoursesComponent implements OnInit {
             //listener
             (value) => {
                 console.log(value);
-                this.speechData = value;
+                this.inputAnswer = value;
                 this.check_disable = false;   
                 
             },
@@ -177,6 +176,7 @@ export class CoursesComponent implements OnInit {
   checkAnswer() {
     if(this.checkOrContinue == 'Check') {
       var goodAnswer = false;
+
       if(this.question.type == 1) {
         if(this.selection == this.question.correctAnswer) {
           goodAnswer = true;
@@ -184,12 +184,12 @@ export class CoursesComponent implements OnInit {
       }
       else if(this.question.type == 3){
         var re = /(，|,|\s)+/gi; 
-        var question_speechData = this.speechData.replace(re,'');
+        var question_inputAnswer = this.inputAnswer.replace(re,'');
         var question_title = this.question.title[0].replace(re,''); 
         
-        console.log('question_speechData='+question_speechData);
+        console.log('question_inputAnswer='+question_inputAnswer);
         console.log('question_title='+question_title);
-        if(question_title == question_speechData) {
+        if(question_title == question_inputAnswer) {
           goodAnswer = true;
           //this.speechRecognitionService.DestroySpeechObject();
         }
@@ -197,14 +197,14 @@ export class CoursesComponent implements OnInit {
 
       else if(this.question.type == 4){
         var re = /(，|,|\s)+/gi; 
-        var question_inputData = this.inputData.replace(re,'');
+        var question_inputAnswer = this.inputAnswer.replace(re,'');
         var correctAnswer = this.question.correctAnswer.replace(re,''); 
         
-        if(correctAnswer == question_inputData) {
+        if(correctAnswer == question_inputAnswer) {
           goodAnswer = true;
         }
       }
-
+      //
       if(goodAnswer) {
         this.snackBar.openFromComponent(CorrectAnswerComponent, {
           duration: 2000,
@@ -217,10 +217,17 @@ export class CoursesComponent implements OnInit {
         this.snackBar.openFromComponent(WrongAnswerComponent, {
           duration: 2000,
         });  
+        this.checkOrContinue = 'Continue';
         this.playVoice('/assets/audio/wrong_answer.mp3');    
       }    
+
     }
     else if(this.checkOrContinue == 'Continue') {
+      this.gotoNextQuestion();      
+    }
+  }
+
+  gotoNextQuestion() {
       if(this.index <= this.question_num - 1) {
         this.index ++;
         this.value = this.index/this.question_num*100;
@@ -230,17 +237,15 @@ export class CoursesComponent implements OnInit {
         else {
           this.finished = true;
         }
-      }   
+      }  
+      this.inputAnswer = ''; 
       this.checkOrContinue = 'Check';
       this.color_A = "";
       this.color_B = "";
       this.color_C = "";
       this.color_D = "";  
-      this.check_disable = true;         
-    }
+      this.check_disable = true;     
   }
-
-
   playVoice(path:string) {
       console.log("play me,"+path);
       var audio = new Audio();

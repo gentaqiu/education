@@ -45,7 +45,7 @@
     <div *ngIf="question.type == 3" class="center_align">
       <div>
         <mat-form-field>
-          <input matInput placeholder="" [(ngModel)]="speechData" disabled value="" class="width_100">
+          <input matInput placeholder="" [(ngModel)]="inputAnswer" disabled value="" class="width_100">
         </mat-form-field>  
       </div>
       <div> 
@@ -58,16 +58,26 @@
     <div *ngIf="question.type == 4" class="center_align">
       <div>
         <mat-form-field>
-          <input matInput placeholder="Fill in the translation using characters" [(ngModel)]="inputData" value="" class="width_100" (click)="inputWriting()">
+          <input matInput placeholder="" [(ngModel)]="inputAnswer"  value="" class="width_100px" (click)="inputWriting()">
         </mat-form-field>  
       </div>
     </div>
 
     <div class="test-check">
       <button mat-raised-button disabled="{{check_disable}}" color="{{color_check}}" (click)="checkAnswer()">{{checkOrContinue}}</button>
+      <button mat-raised-button color="primary" (click)="gotoNextQuestion()">Skip</button>
     </div>
   </mat-card-actions>
 </mat-card>
 <div class="center_align" *ngIf="finished">
-  Congrat, You've done.
+  <div class="lesson_completed">
+      Lesson Completed
+  </div>
+  <div>
+    <img src="/assets/win.jpg" alt="Lesson Completed"/>
+  </div>
+  <div>
+      <button mat-raised-button  color="primary">Continue</button>  
+      <button mat-raised-button  color="primary">Review</button>   
+  </div>
 </div>

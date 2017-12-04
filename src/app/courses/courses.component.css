@@ -29,6 +29,10 @@
 .width_100 {
 	width: 100%;
 }
+.width_100px {
+	width: 200px;
+	size: 200;
+}
 .center_align {
 	text-align: center;
 	align-content: center;
@@ -42,4 +46,8 @@
 
 .example-full-width {
   width: 100%;
+}
+.lesson_completed {
+	padding-top: 50px;
+	padding-bottom: 30px;
 }
