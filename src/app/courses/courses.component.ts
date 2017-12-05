@@ -236,6 +236,10 @@ export class CoursesComponent implements OnInit {
   }
 
   gotoNextQuestion() {
+    this.answerAText = '';
+    this.answerBText = '';
+    this.answerCText = '';
+    this.answerDText = '';
       if(this.index <= this.question_num - 1) {
         this.index ++;
         this.value = this.index/this.question_num*100;
