@@ -61,6 +61,7 @@
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
+    outline:none;
 }
 .button_selected {background-color: #008CBA;} /* Blue */
 .button_unselected {background-color: #e7e7e7; color: black;} /* Gray */ 
