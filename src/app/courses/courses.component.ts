@@ -38,6 +38,10 @@ export class CoursesComponent implements OnInit {
   soundID = "Thunder";
   questions = [];
   question: any;
+  answerAText = '';
+  answerBText = '';
+  answerCText = '';
+  answerDText = '';
   checkOrContinue = '';
 
   constructor(private route: ActivatedRoute, public snackBar: MatSnackBar,private questionService: QuestionService,private voiceService: VoiceService,private courseService:CourseService,private router: Router,private speechRecognitionService: SpeechRecognitionService) { }
@@ -89,6 +93,10 @@ export class CoursesComponent implements OnInit {
               }
               this.question_num = this.questions.length;
               this.question = this.questions[this.index];
+              this.answerAText = this.question.answerAText;
+              this.answerBText = this.question.answerBText;
+              this.answerCText = this.question.answerCText;
+              this.answerDText = this.question.answerDText;
           },
           err => {
               console.log(err);
@@ -233,6 +241,10 @@ export class CoursesComponent implements OnInit {
         this.value = this.index/this.question_num*100;
         if(this.index <= this.question_num - 1) {
           this.question = this.questions[this.index];
+          this.answerAText = this.question.answerAText;
+          this.answerBText = this.question.answerBText;
+          this.answerCText = this.question.answerCText;
+          this.answerDText = this.question.answerDText;          
         }
         else {
           this.finished = true;
