@@ -28,10 +28,7 @@ export class CoursesComponent implements OnInit {
   value = 0;
   bufferValue = 0;
   col_num:number = 2;
-  color_A = "";
-  color_B = "";
-  color_C = "";
-  color_D = "";
+
   selection = "";
   check_disable = true;
   color_check = "";
@@ -43,6 +40,10 @@ export class CoursesComponent implements OnInit {
   answerCText = '';
   answerDText = '';
   checkOrContinue = '';
+  class_buttonA = 'button_unselected';
+  class_buttonB = 'button_unselected';
+  class_buttonC = 'button_unselected';
+  class_buttonD = 'button_unselected';
 
   constructor(private route: ActivatedRoute, public snackBar: MatSnackBar,private questionService: QuestionService,private voiceService: VoiceService,private courseService:CourseService,private router: Router,private speechRecognitionService: SpeechRecognitionService) { }
 
@@ -111,37 +112,37 @@ export class CoursesComponent implements OnInit {
   selectAnswer(selection:string) {
     this.selection = selection;
     if(selection == 'A') {
-      this.color_A = "primary";
-      this.color_B = "";
-      this.color_C = "";
-      this.color_D = "";    
+      this.class_buttonA = "button_selected";
+      this.class_buttonB = "button_unselected";
+      this.class_buttonC = "button_unselected";
+      this.class_buttonD = "button_unselected";    
       if(this.question.answerASound) {
         this.playVoice(this.question.answerASound);
       }
     }
     else if(selection == 'B') {
-      this.color_A = "";
-      this.color_B = "primary";
-      this.color_C = "";
-      this.color_D = "";     
+      this.class_buttonA = "button_unselected";
+      this.class_buttonB = "button_selected";
+      this.class_buttonC = "button_unselected";
+      this.class_buttonD = "button_unselected";     
       if(this.question.answerBSound) {
         this.playVoice(this.question.answerBSound);
       }       
     }
     else if(selection == 'C') {
-      this.color_A = "";
-      this.color_B = "";
-      this.color_C = "primary";
-      this.color_D = "";   
+      this.class_buttonA = "button_unselected";
+      this.class_buttonB = "button_unselected";
+      this.class_buttonC = "button_selected";
+      this.class_buttonD = "button_unselected";   
       if(this.question.answerCSound) {
         this.playVoice(this.question.answerCSound);
       }         
     }
     else if(selection == 'D') {
-      this.color_A = '';
-      this.color_B = "";
-      this.color_C = "";
-      this.color_D = "primary";  
+      this.class_buttonA = 'button_unselected';
+      this.class_buttonB = "button_unselected";
+      this.class_buttonC = "button_unselected";
+      this.class_buttonD = "button_selected";  
       if(this.question.answerDSound) {
         this.playVoice(this.question.answerDSound);
       }          
@@ -240,6 +241,10 @@ export class CoursesComponent implements OnInit {
     this.answerBText = '';
     this.answerCText = '';
     this.answerDText = '';
+    if(!(this.answerAText == '' && this.answerBText == '' && this.answerCText == '' && this.answerDText == '')) {
+      return;
+    }
+    console.log('this.answerAText===' + this.answerAText);
       if(this.index <= this.question_num - 1) {
         this.index ++;
         this.value = this.index/this.question_num*100;
@@ -254,12 +259,13 @@ export class CoursesComponent implements OnInit {
           this.finished = true;
         }
       }  
+      console.log('this.answerAText2===' + this.answerAText);
       this.inputAnswer = ''; 
       this.checkOrContinue = 'Check';
-      this.color_A = "";
-      this.color_B = "";
-      this.color_C = "";
-      this.color_D = "";  
+      this.class_buttonA = "button_unselected";
+      this.class_buttonB = "button_unselected";
+      this.class_buttonC = "button_unselected";
+      this.class_buttonD = "button_unselected";   
       this.check_disable = true;     
   }
   playVoice(path:string) {

@@ -29,16 +29,18 @@
 
     <mat-grid-list cols="{{col_num}}" rowHeight="22:4" *ngIf="question.type == 1">
       <mat-grid-tile>
-        <button class="answer_button" mat-raised-button color="{{color_A}}" (click)="selectAnswer('A')">{{answerAText}}</button>
+        <button class="button answer_button" [ngClass]="class_buttonA" (click)="selectAnswer('A')">
+        {{answerAText}}
+        </button>
       </mat-grid-tile>
       <mat-grid-tile>
-        <button class="answer_button" mat-raised-button color="{{color_B}}" (click)="selectAnswer('B')">{{answerBText}}</button>
+        <button class="button answer_button" [ngClass]="class_buttonB" (click)="selectAnswer('B')">{{answerBText}}</button>
       </mat-grid-tile>
       <mat-grid-tile>
-        <button class="answer_button" mat-raised-button color="{{color_C}}" (click)="selectAnswer('C')">{{answerCText}}</button>
+        <button class="button answer_button" [ngClass]="class_buttonC" (click)="selectAnswer('C')">{{answerCText}}</button>
       </mat-grid-tile>
       <mat-grid-tile>
-        <button class="answer_button" mat-raised-button color="{{color_D}}" (click)="selectAnswer('D')">{{answerDText}}</button>    
+        <button class="button answer_button" [ngClass]="class_buttonD" (click)="selectAnswer('D')">{{answerDText}}</button>    
       </mat-grid-tile>  
     </mat-grid-list>
 

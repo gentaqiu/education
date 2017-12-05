@@ -24,7 +24,6 @@
 .answer_button {
 	width: 80%;
 	height: 50px;
-	display: inline-block;
 }
 .width_100 {
 	width: 100%;
@@ -51,3 +50,17 @@
 	padding-top: 50px;
 	padding-bottom: 30px;
 }
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.button_selected {background-color: #008CBA;} /* Blue */
+.button_unselected {background-color: #e7e7e7; color: black;} /* Gray */ 
