@@ -27,6 +27,14 @@
       
     </div>
 
+    <div *ngIf="question.type == 5" class="center_align">
+        <div class="line">
+          <button class="class_buttonOption" *ngFor="let selectedAnswer of selectedAnswers" (click)="deSelectOption(selectedAnswer)">{{selectedAnswer}}</button>
+        </div>   
+        <div class="option_button">
+          <button class="class_buttonOption" *ngFor="let answerOption of question.answerA" (click)="selectOption(answerOption)">{{answerOption}}</button>
+        </div>   
+    </div>
     <mat-grid-list cols="{{col_num}}" rowHeight="22:4" *ngIf="question.type == 1">
       <mat-grid-tile>
         <button class="button answer_button" [ngClass]="class_buttonA" (click)="selectAnswer('A')">

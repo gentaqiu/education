@@ -63,5 +63,27 @@
     cursor: pointer;
     outline:none;
 }
+.class_buttonOption {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    outline:none;  
+}
 .button_selected {background-color: #008CBA;} /* Blue */
 .button_unselected {background-color: #e7e7e7; color: black;} /* Gray */ 
+.option_button {
+  margin: 10px;
+  border: 10px;
+}
+.line{
+width: 100%;
+height: 47px;
+border-bottom: 1px solid black;
+}

@@ -34,6 +34,7 @@ export class CoursesComponent implements OnInit {
   color_check = "";
   soundID = "Thunder";
   questions = [];
+  selectedAnswers = [];
   question: any;
   answerAText = '';
   answerBText = '';
@@ -90,7 +91,8 @@ export class CoursesComponent implements OnInit {
                 }  
                 if(this.questions[i].answerD.length>1) {
                   this.questions[i].answerDSound = this.questions[i].answerD[1];
-                }                                            
+                }   
+
               }
               this.question_num = this.questions.length;
               this.question = this.questions[this.index];
@@ -108,7 +110,33 @@ export class CoursesComponent implements OnInit {
   }
   ngOnDestroy() {
     this.sub.unsubscribe();
-  }  
+  }
+
+  selectOption(selection:string) {
+    this.selectedAnswers.push(selection);
+    for (var i = 0; i < this.question.answerA.length; i++) {
+      var answerOption = this.question.answerA[i];
+      if(answerOption == selection) {
+        this.question.answerA.splice(i,1);
+        break;
+      }
+    }
+    this.check_disable = false;     
+    this.color_check = "accent";     
+  }
+
+  deSelectOption(selection:string) {
+    this.question.answerA.push(selection);
+
+    for (var i = 0; i < this.selectedAnswers.length; i++) {
+      var answerOption = this.selectedAnswers[i];
+      if(answerOption == selection) {
+        this.selectedAnswers.splice(i,1);
+        break;
+      }
+    }
+  }
+
   selectAnswer(selection:string) {
     this.selection = selection;
     if(selection == 'A') {
@@ -213,6 +241,15 @@ export class CoursesComponent implements OnInit {
           goodAnswer = true;
         }
       }
+      else if(this.question.type == 5){
+        var correctAnswer = this.question.correctAnswer.split(' ');
+        console.log('correctAnswer=');
+        console.log(correctAnswer);
+        console.log(this.selectedAnswers);
+        if(correctAnswer.toString() == this.selectedAnswers.toString()) {
+          goodAnswer = true;
+        }
+      }
       //
       if(goodAnswer) {
         this.snackBar.openFromComponent(CorrectAnswerComponent, {
@@ -266,7 +303,8 @@ export class CoursesComponent implements OnInit {
       this.class_buttonB = "button_unselected";
       this.class_buttonC = "button_unselected";
       this.class_buttonD = "button_unselected";   
-      this.check_disable = true;     
+      this.check_disable = true;    
+      this.selectedAnswers = [];
   }
   playVoice(path:string) {
       console.log("play me,"+path);

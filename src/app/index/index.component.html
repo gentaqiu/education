@@ -1,6 +1,6 @@
 <mat-grid-list cols="{{col_num}}" rowHeight="8:9">
 
-  <mat-grid-tile *ngFor="let course of courses; let i = index">
+  <mat-grid-tile *ngFor="let course of courses; let i = index" (swipeleft)="swipeLeft()" (swiperight)="swipeRight()">
     <mat-card class="example-card" >
 
       <img mat-card-image src="{{course.image}}" alt="{{course.name}}">

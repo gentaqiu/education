@@ -30,7 +30,12 @@ export class IndexComponent implements OnInit {
             this.col_num = 2;
         }    
     }
-
+    swipeLeft() {
+     console.log('swipeLeft');
+    }
+    swipeRight() {
+     console.log('swipeRight');
+    }    
     ngOnInit() {
       this.setColNum();
       this.courseService.getCourses().subscribe(    
