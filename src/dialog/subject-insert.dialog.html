@@ -1,0 +1,24 @@
+<div class="modal-content">
+  <button mat-icon-button class="close" (click)="onCancelClick()">
+    <mat-icon aria-label="clear icon">clear</mat-icon>
+  </button>
+  <p class="title">Insert Subject</p>
+</div>
+<p class="clear"></p>
+<hr/>
+
+<div class="example-container">
+  <mat-form-field>
+    <input matInput placeholder="Name" [(ngModel)]="subjectName" >
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Sequence" [(ngModel)]="sequence" >
+  </mat-form-field>  
+  <input hidden type="file" #imgFileInput ngFileSelect [options]="options" (change)="onUploadOutput($event)" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" multiple>     
+  <img src="{{subjectImage}}" alt="Norway" (click)="imgFileInput.click();">
+</div>
+
+<div class="button-row">
+  <button mat-raised-button color="primary" (click)="onConfirmClick()">Primary</button>
+  <button mat-raised-button color="accent" (click)="onCancelClick()">Cancel</button>
+</div>

@@ -8,3 +8,5 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OWJiMTg1NDRjN2Y1ODE1OGUyMTM4ZTc
 
 Bitnami MEAN:Q3kIvCGABS6K 
 abcdd
+
+chatbox:http://4dev.tech/2016/05/creating-an-angular2-chat-app/

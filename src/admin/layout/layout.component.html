@@ -1,6 +1,7 @@
-<button mat-button [matMenuTriggerFor]="course_management">Course Management</button>
+<button mat-button [matMenuTriggerFor]="content_management">Content Management</button>
 
-<mat-menu #course_management="matMenu">
+<mat-menu #content_management="matMenu">
+  <button mat-menu-item (click)="navigateTo('subject')">Subject List</button>
   <button mat-menu-item (click)="navigateTo('course')">Course List</button>
 </mat-menu>
 

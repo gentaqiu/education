@@ -1,0 +1,26 @@
+.course-form-container {
+  padding-top: 10px;
+  padding-left:20px;
+  padding-bottom: 50px;
+}
+
+.form-row {
+	float:left;
+}
+.example-full-width {
+	float:left; 
+}
+
+.upload-button {
+    display: block;
+    float: left;
+    text-decoration: underline;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin-left: 4px;
+    color: #3e3e3e;
+}
+.button_bottom {
+  margin: 0 auto;  
+}

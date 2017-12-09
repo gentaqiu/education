@@ -1,0 +1,26 @@
+<div class="course-form-container">
+  <div class="form-row">
+  	<button mat-raised-button color="primary" (click)="createUpdateSubject()">{{createOrUpdate}}</button>
+  </div>  
+</div>
+
+<div>
+<mat-grid-list cols="3" rowHeight="8:9">
+
+  <mat-grid-tile *ngFor="let subject of subjects; let i = index">
+    <mat-card class="example-card" >
+      <div class="button_bottom">
+        <img mat-card-image src="{{subject.image}}" alt="{{subject.name}}">
+      </div>
+      <div class="button_bottom">
+        <button mat-raised-button (click)="listCourses(subject._id)">{{subject.name}}</button>
+
+        <button mat-raised-button (click)="deleteSubject(subject._id)">Delete</button>
+
+        <button mat-raised-button (click)="editSubject(subject._id,subject.sequence,subject.name,subject.image)">Edit</button>
+    </div>  
+    </mat-card>
+  </mat-grid-tile>
+
+</mat-grid-list>
+</div>
