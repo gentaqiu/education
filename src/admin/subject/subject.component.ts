@@ -20,7 +20,7 @@ export class SubjectComponent {
   ngOnInit() {
       this.subjectService.getSubjects().subscribe(    
           suc => {
-              //console.log(suc);
+              console.log(suc);
               this.subjects = suc.subjects;
           },
           err => {

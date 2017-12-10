@@ -23,7 +23,7 @@ module.exports = {
       var sequence = body.sequence;
       var subjectmodel = { sequence:sequence,name: subjectName,image:subjectImage };
 
-      if(course_id != '') {
+      if(subject_id != '') {
         SubjectModel.findByIdAndUpdate(subject_id, { $set: subjectmodel}, { new: true }, function (err, subject) {
           if (err) return handleError(err);
           var response = {

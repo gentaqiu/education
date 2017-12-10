@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
 
 router.get('/profile', auth, profileCtrl.profileRead);
 router.get('/courses', courseCtrl.getCourses);
-
+router.get('/subjects', subjectCtrl.getSubjects);
 router.post('/users/register', userCtrl.register);
 router.post('/users/login', userCtrl.login);
 router.post('/voice/path', voiceCtrl.path);
