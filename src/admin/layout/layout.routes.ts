@@ -7,8 +7,8 @@ const routes: Routes = [
       { path: '', redirectTo: 'index', pathMatch: 'full' },
       { path: 'index', loadChildren:'admin/index/index.module#IndexModule' },
       { path: 'subject', loadChildren:'admin/subject/subject.module#SubjectModule' },
-      { path: 'course', loadChildren:'admin/course/course.module#CourseModule' },
-      { path: 'question/:course_id', loadChildren:'admin/question/question.module#QuestionModule' },
+      { path: 'courses/:subject_id', loadChildren:'admin/course/course.module#CourseModule' },
+      { path: 'questions/:course_id', loadChildren:'admin/question/question.module#QuestionModule' },
     ]
   }
 ];

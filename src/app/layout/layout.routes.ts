@@ -4,9 +4,10 @@ import { LayoutComponent } from './layout.component';
 const routes: Routes = [
   {
     path: '', component: LayoutComponent, children: [
-      { path: '', redirectTo: 'index', pathMatch: 'full' },
-      { path: 'index', loadChildren:'app/index/index.module#IndexModule' },
-      { path: 'courses/:course_id', loadChildren:'app/courses/courses.module#CoursesModule' }
+      { path: '', redirectTo: 'subjects', pathMatch: 'full' },
+      { path: 'subjects', loadChildren:'app/subjects/subject.module#SubjectModule' },
+      { path: 'subject_courses/:subject_id', loadChildren:'app/subject_courses/subject_courses.module#SubjectCoursesModule' },
+      { path: 'course_questions/:course_id', loadChildren:'app/course_questions/course_questions.module#CourseQuestionsModule' }
     ]
   }
 ];

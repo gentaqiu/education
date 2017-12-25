@@ -62,7 +62,7 @@ export class SubjectComponent {
     });
   }
  
-  deleteCourse(subject_id:string) {
+  deleteSubject(subject_id:string) {
       this.subjectService.deleteSubject(subject_id).subscribe(    
           suc => {
               console.log(suc);

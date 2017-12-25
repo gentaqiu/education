@@ -1,4 +1,4 @@
-import { CoursesComponent } from './courses.component';
+import { CourseQuestionsComponent } from './course_questions.component';
 import {CorrectAnswerComponent} from '../../components/correct-answer';
 import {WrongAnswerComponent} from '../../components/wrong-answer';
 import { NgModule } from '@angular/core';
@@ -16,7 +16,7 @@ import { QuestionService } from '../../service/question.service';
 import { SpeechRecognitionService } from '../../service/speech-recognition.service';
 
 export const routes = [
-    { path: '', component: CoursesComponent, pathMatch: 'full' },
+    { path: '', component: CourseQuestionsComponent, pathMatch: 'full' },
 ];
 
 @NgModule({
@@ -33,7 +33,7 @@ export const routes = [
     RouterModule.forChild(routes),
   ],
   declarations: [
-   CoursesComponent,
+   CourseQuestionsComponent,
    CorrectAnswerComponent,
    WrongAnswerComponent
 
@@ -41,5 +41,5 @@ export const routes = [
   entryComponents: [CorrectAnswerComponent,WrongAnswerComponent],
   providers: [QuestionService,SpeechRecognitionService],
 })
-export  class CoursesModule {
+export  class CourseQuestionsModule {
 }

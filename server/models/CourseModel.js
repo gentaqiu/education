@@ -6,6 +6,10 @@ function getCourseModel () {
 
 
   var courseSchema = new mongoose.Schema({
+    subject_id: {
+      type: String,
+      required: true
+    },     
     sequence: {
       type: Number,
       default: 100

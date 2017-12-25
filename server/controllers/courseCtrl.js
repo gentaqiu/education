@@ -17,13 +17,27 @@ module.exports = {
     });
 
   },
+  getCoursesBySubject: function(req,res) {
+    var parameters = req.params;
+    var subject_id = parameters.subject_id;
+    CourseModel.find({subject_id:subject_id}).sort('sequence').exec(function (err, courses) {
+        courseSet = courses;
+        var response = {
+          "success":true,
+          "courses":courseSet
+        };
+        return res.status(200).json(response);
+
+    });    
+  },
   createUpdate: function(req,res) {
       body = req.body;    
       var courseName = body.courseName;
       var course_id = body.course_id;
+      var subject_id = body.subject_id;
       var courseImage = body.courseImage;
       var sequence = body.sequence;
-      var coursemodel = { sequence:sequence,name: courseName,image:courseImage };
+      var coursemodel = { subject_id:subject_id,sequence:sequence,name: courseName,image:courseImage };
 
       if(course_id != '') {
         CourseModel.findByIdAndUpdate(course_id, { $set: coursemodel}, { new: true }, function (err, course) {

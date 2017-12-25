@@ -1,0 +1,13 @@
+<mat-grid-list cols="{{col_num}}" rowHeight="8:9">
+
+  <mat-grid-tile *ngFor="let subject of subjects; let i = index">
+    <mat-card class="example-card" >
+
+      <img mat-card-image src="{{subject.image}}" alt="{{subject.name}}">
+      <div>
+        <button mat-raised-button (click)="startSubject(subject._id)">{{subject.name}}</button>
+    </div>  
+    </mat-card>
+  </mat-grid-tile>
+
+</mat-grid-list>

@@ -2,23 +2,23 @@ import {Component, Inject, ViewChild, TemplateRef, OnInit} from '@angular/core';
 import {DOCUMENT} from '@angular/platform-browser';
 import {MatDialog} from '@angular/material';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { CourseService } from '../../service/course.service';
+import { SubjectService } from '../../service/subject.service';
 
 @Component({
-  selector: 'app-index',
-  templateUrl: './index.component.html',
-  styleUrls: ['./index.component.css'],
+  selector: 'app-subject',
+  templateUrl: './subject.component.html',
+  styleUrls: ['./subject.component.css'],
       host: {
         '(window:resize)': 'onResize($event)'
       }    
 })
-export class IndexComponent implements OnInit {
+export class SubjectComponent implements OnInit {
 
-  constructor(public dialog: MatDialog,private router: Router,private courseService:CourseService) { }
+  constructor(public dialog: MatDialog,private router: Router,private subjectService:SubjectService) { }
 
     current:number = 1;
     col_num:number = 2;
-    courses = [];
+    subjects = [];
 
     setColNum() {
         this.col_num = 3;
@@ -29,19 +29,12 @@ export class IndexComponent implements OnInit {
         else if (width <= 800) {
             this.col_num = 2;
         }    
-    }
-    swipeLeft() {
-     console.log('swipeLeft');
-    }
-    swipeRight() {
-     console.log('swipeRight');
-    }    
+    }  
     ngOnInit() {
       this.setColNum();
-      this.courseService.getCourses().subscribe(    
+      this.subjectService.getSubjects().subscribe(    
           suc => {
-              //console.log(suc);
-              this.courses = suc.courses;
+              this.subjects = suc.subjects;
           },
           err => {
               console.log(err);
@@ -52,8 +45,8 @@ export class IndexComponent implements OnInit {
         this.setColNum();
     }
 
-    startCourse(courseName:string): void {
-      this.router.navigate(['/app/courses/'+courseName]);
+    startSubject(subject_id:string): void {
+      this.router.navigate(['/app/subject_courses/'+subject_id]);
     }
 
 }

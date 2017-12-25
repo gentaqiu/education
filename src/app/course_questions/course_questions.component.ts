@@ -9,14 +9,14 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { SpeechRecognitionService } from '../../service/speech-recognition.service';
 
 @Component({
-  selector: 'app-courses',
-  templateUrl: './courses.component.html',
-  styleUrls: ['./courses.component.css'],
+  selector: 'app-course-questions',
+  templateUrl: './course_questions.component.html',
+  styleUrls: ['./course_questions.component.css'],
       host: {
         '(window:resize)': 'onResize($event)'
       }    
 })
-export class CoursesComponent implements OnInit {
+export class CourseQuestionsComponent implements OnInit {
   finished = false;
   inputAnswer: string;
   course_id: string;

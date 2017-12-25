@@ -13,6 +13,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 export class CourseComponent {
   options: UploaderOptions;
   formData: FormData;
+  subject_id: string;
   files: UploadFile[];
   uploadInput: EventEmitter<UploadInput>;
   humanizeBytes: Function;
@@ -21,14 +22,18 @@ export class CourseComponent {
   courseName: string;
   createOrUpdate: string;
   courses = [];
+  sub: any;
 
-  constructor(private courseService:CourseService,private router: Router,public dialog: MatDialog) {
+  constructor(private route: ActivatedRoute,private courseService:CourseService,private router: Router,public dialog: MatDialog) {
     this.files = []; // local uploading files array
     this.uploadInput = new EventEmitter<UploadInput>(); // input events, we use this to emit data to ngx-uploader
     this.humanizeBytes = humanizeBytes;
   }
   ngOnInit() {
-      this.courseService.getCourses().subscribe(    
+
+    this.sub = this.route.params.subscribe(params => {
+       this.subject_id = params['subject_id'];
+       this.courseService.getCoursesBySubject(this.subject_id).subscribe(    
           suc => {
               //console.log(suc);
               this.courses = suc.courses;
@@ -36,13 +41,15 @@ export class CourseComponent {
           err => {
               console.log(err);
           }
-      );  
-      this.createOrUpdate = 'Create';    
-      this.course_id = "";  
+       );   
+    });
+
+    this.createOrUpdate = 'Create';    
+    this.course_id = "";  
   }
 
   listQuestions(courseName:string) {
-    this.router.navigate(['/admin/question',courseName]);
+    this.router.navigate(['/admin/questions',courseName]);
   }
 
 
@@ -61,7 +68,7 @@ export class CourseComponent {
 
     courseDialogRef.afterClosed().subscribe(result => {
 
-      this.courseService.createCourse(this.course_id,result.sequence,result.courseName,result.courseImage).subscribe(    
+      this.courseService.createCourse(this.course_id,this.subject_id,result.sequence,result.courseName,result.courseImage).subscribe(    
         suc => {
           this.courses.push(suc.course);
         },
@@ -105,7 +112,7 @@ export class CourseComponent {
     });  
     courseDialogRef.afterClosed().subscribe(result => {
 
-      this.courseService.createCourse(this.course_id,result.sequence,result.courseName,result.courseImage).subscribe(    
+      this.courseService.createCourse(this.course_id,this.subject_id,result.sequence,result.courseName,result.courseImage).subscribe(    
         suc => {
           for(var i = this.courses.length - 1; i >= 0; i--) {
               if(this.courses[i]._id == this.course_id) {
