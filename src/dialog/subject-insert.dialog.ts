@@ -13,6 +13,7 @@ export class SubjectInsertDialog {
   uploadInput: EventEmitter<UploadInput>;
   subjectName: string;
   subjectImage: string;
+  lang: string;
   sequence: string;
   langs = [
     {value: 'zh', viewValue: 'Chinese'},
@@ -43,7 +44,7 @@ export class SubjectInsertDialog {
   } 
 
   onConfirmClick(): void {
-    var subject = {sequence:this.sequence,subjectName:this.subjectName,subjectImage:this.subjectImage};
+    var subject = {lang:this.lang,sequence:this.sequence,subjectName:this.subjectName,subjectImage:this.subjectImage};
     this.dialogRef.close(subject);
   }
 

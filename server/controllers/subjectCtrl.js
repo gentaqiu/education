@@ -17,11 +17,12 @@ module.exports = {
   },
   createUpdate: function(req,res) {
       body = req.body;    
+      var lang = body.lang;
       var subjectName = body.subjectName;
       var subject_id = body.subject_id;
       var subjectImage = body.subjectImage;
       var sequence = body.sequence;
-      var subjectmodel = { sequence:sequence,name: subjectName,image:subjectImage };
+      var subjectmodel = { lang:lang,sequence:sequence,name: subjectName,image:subjectImage };
 
       if(subject_id != '') {
         SubjectModel.findByIdAndUpdate(subject_id, { $set: subjectmodel}, { new: true }, function (err, subject) {

@@ -12,7 +12,6 @@ function getSubjectModel () {
     }, 
     lang: {
       type: String,
-      unique: true,
       required: true
     },   
     name: {

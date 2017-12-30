@@ -12,9 +12,13 @@ export class SubjectService {
       .map(res => res.json());  
   }
 
-  createSubject(subject_id: string,sequence:string, subjectName: string, subjectImage: string) {
+  createSubject(subject_id: string,lang:string,sequence:string, subjectName: string, subjectImage: string) {
+    console.log({subject_id: subject_id, lang:lang, sequence:sequence,subjectName: subjectName, subjectImage: subjectImage});
+    if(!lang) {
+      lang = 'zh';
+    }
     return this.http.post ('/api/subject/createUpdate',
-    {subject_id: subject_id, sequence:sequence,subjectName: subjectName, subjectImage: subjectImage})
+    {subject_id: subject_id, lang:lang, sequence:sequence,subjectName: subjectName, subjectImage: subjectImage})
       .map(res => res.json());
   }
 

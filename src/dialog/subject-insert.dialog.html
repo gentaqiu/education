@@ -1,8 +1,8 @@
 <div class="example-container">
         <mat-form-field>
-          <mat-select placeholder="Language" [(value)]="selectedLang">
-            <mat-option *ngFor="let lang of langs" [value]="lang.value">
-              {{ lang.viewValue }}
+          <mat-select placeholder="Language" [(ngModel)]="lang" [(value)]="selectedLang">
+            <mat-option *ngFor="let item of langs" [value]="item.value">
+              {{ item.viewValue }}
             </mat-option>
           </mat-select>
         </mat-form-field>

@@ -51,7 +51,7 @@ export class SubjectComponent {
 
     subjectDialogRef.afterClosed().subscribe(result => {
 
-      this.subjectService.createSubject(this.subject_id,result.sequence,result.subjectName,result.subjectImage).subscribe(    
+      this.subjectService.createSubject(this.subject_id,result.lang,result.sequence,result.subjectName,result.subjectImage).subscribe(    
         suc => {
           this.subjects.push(suc.subject);
         },
@@ -94,7 +94,7 @@ export class SubjectComponent {
     });  
     subjectDialogRef.afterClosed().subscribe(result => {
 
-      this.subjectService.createSubject(this.subject_id,result.sequence,result.subjectName,result.subjectImage).subscribe(    
+      this.subjectService.createSubject(this.subject_id,result.lang,result.sequence,result.subjectName,result.subjectImage).subscribe(    
         suc => {
           for(var i = this.subjects.length - 1; i >= 0; i--) {
               if(this.subjects[i]._id == this.subject_id) {
