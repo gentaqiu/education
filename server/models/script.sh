@@ -1,0 +1,1 @@
+/usr/bin/node /opt/bitnami/apps/education/server.js&
