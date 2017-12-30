@@ -3,8 +3,9 @@ function getSubjectModel () {
   var mongoose = require('mongoose');
   var Schema = mongoose.Schema;
   mongoose.connect('mongodb://localhost/education');
+  autoIncrement = require('mongoose-auto-increment');
 
-
+  autoIncrement.initialize(mongoose);
   var subjectSchema = new mongoose.Schema({
     sequence: {
       type: Number,

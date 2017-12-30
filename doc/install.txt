@@ -4,7 +4,7 @@ ng build --watch && PORT=3014 node server.js
 
 
 ng build --watch
-PORT=4208 nodemon ./server.js
+PORT=4208 nodemon ./start.js
 
 
 
