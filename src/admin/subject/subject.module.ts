@@ -8,6 +8,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { SubjectInsertDialog } from '../../dialog/subject-insert.dialog';
 import {MatIconModule} from '@angular/material/icon';
 import { NgUploaderModule } from 'ngx-uploader';
+import {MatSelectModule} from '@angular/material/select';
 
 export const routes = [
     { path: '', component: SubjectComponent, pathMatch: 'full' },
@@ -26,6 +27,7 @@ export const routes = [
     MatCardModule,
     MatDialogModule,
     MatIconModule,
+    MatSelectModule,
     NgUploaderModule
   ],
   entryComponents: [SubjectInsertDialog],

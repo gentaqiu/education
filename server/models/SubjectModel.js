@@ -9,7 +9,12 @@ function getSubjectModel () {
     sequence: {
       type: Number,
       default: 100
-    },    
+    }, 
+    lang: {
+      type: String,
+      unique: true,
+      required: true
+    },   
     name: {
       type: String,
       unique: true,

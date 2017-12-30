@@ -13,6 +13,7 @@
         <img mat-card-image src="{{subject.image}}" alt="{{subject.name}}">
       </div>
       <div class="button_bottom">
+
         <button mat-raised-button (click)="listCourses(subject._id)">{{subject.name}}</button>
 
         <button mat-raised-button (click)="deleteSubject(subject._id)">Delete</button>

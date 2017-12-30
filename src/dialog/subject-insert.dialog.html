@@ -1,13 +1,12 @@
-<div class="modal-content">
-  <button mat-icon-button class="close" (click)="onCancelClick()">
-    <mat-icon aria-label="clear icon">clear</mat-icon>
-  </button>
-  <p class="title">Insert Subject</p>
-</div>
-<p class="clear"></p>
-<hr/>
-
 <div class="example-container">
+        <mat-form-field>
+          <mat-select placeholder="Language" [(value)]="selectedLang">
+            <mat-option *ngFor="let lang of langs" [value]="lang.value">
+              {{ lang.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
   <mat-form-field>
     <input matInput placeholder="Name" [(ngModel)]="subjectName" >
   </mat-form-field>

@@ -14,6 +14,11 @@ export class SubjectInsertDialog {
   subjectName: string;
   subjectImage: string;
   sequence: string;
+  langs = [
+    {value: 'zh', viewValue: 'Chinese'},
+    {value: 'en', viewValue: 'English'}
+  ];
+  selectedLang = 'zh';  
   constructor(
     public dialogRef: MatDialogRef<SubjectInsertDialog>,
     @Inject(MAT_DIALOG_DATA) public data: any) { 
