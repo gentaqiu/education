@@ -4,14 +4,13 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { PostsService } from './posts.service';
 import { UsersService } from '../service/users.service';
 import { AuthService } from '../service/auth.service';
 import { CourseService } from '../service/course.service';
 import { SubjectService } from '../service/subject.service';
 import { VoiceService } from '../service/voice.service';
 import { AppComponent } from './app.component';
-import { PostsComponent } from './posts/posts.component';
+import { IndexComponent } from './index/index.component';
 import { RegisterDialog } from '../dialog/register.dialog';
 import { LoginDialog } from '../dialog/login.dialog';
 import { MenuDemo } from './menu/menu-demo';
@@ -24,9 +23,10 @@ import 'hammerjs';
 const ROUTES = [
   {
     path: '',
-    redirectTo: 'app',
+    redirectTo: 'index',
     pathMatch: 'full'
   },
+
   {
     path: 'app', loadChildren: 'app/layout/layout.module#LayoutModule'
   }, 
@@ -38,15 +38,15 @@ const ROUTES = [
     component: MenuDemo
   },    
   {
-    path: 'posts',
-    component: PostsComponent
+    path: 'index',
+    component: IndexComponent
   }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    PostsComponent,
+    IndexComponent,
     RegisterDialog,
     LoginDialog,
     MenuDemo
@@ -62,7 +62,7 @@ const ROUTES = [
     MatButtonModule,
     RouterModule.forRoot(ROUTES) // Add routes to the app
   ],
-  providers: [PostsService,UsersService,AuthService,VoiceService,CourseService,SubjectService],
+  providers: [UsersService,AuthService,VoiceService,CourseService,SubjectService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
