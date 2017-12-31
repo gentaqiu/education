@@ -1,6 +1,4 @@
-ng build && PORT=3014 node server.js
-ng build && node server.js
-ng build --watch && PORT=3014 node server.js
+
 
 
 ng build --watch

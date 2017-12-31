@@ -5,7 +5,7 @@ function getSubjectModel () {
   mongoose.connect('mongodb://localhost/education');
   autoIncrement = require('mongoose-auto-increment');
 
-  autoIncrement.initialize(mongoose);
+  autoIncrement.initialize(mongoose.connection);
   var subjectSchema = new mongoose.Schema({
     sequence: {
       type: Number,
@@ -28,7 +28,12 @@ function getSubjectModel () {
     collection: 'category'
   });
  
-
+  subjectSchema.plugin(autoIncrement.plugin, {
+    model: 'category',
+    field: '_id',
+    startAt: 1,
+    incrementBy: 1
+});
   if (mongoose.models && mongoose.models.SubjectModel) return mongoose.models.SubjectModel
   // if no current model exists register and return new model
   $model = mongoose.model('SubjectModel', subjectSchema);
